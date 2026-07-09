@@ -1,0 +1,179 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="clr-namespace:DataBoard.Helpers">
+
+
+
+    <!--  灰色线条画刷  -->
+    <SolidColorBrush x:Key="LineBrush" Color="#CCCCCC" />
+    <SolidColorBrush x:Key="LineFocusBrush" Color="#007ACC" />
+    <SolidColorBrush x:Key="LineHoverBrush" Color="#888888" />
+    <SolidColorBrush x:Key="LineErrorBrush" Color="#FF3B30" />
+    <SolidColorBrush x:Key="PlaceholderBrush" Color="#999999" />
+    <SolidColorBrush x:Key="TextBrush" Color="#333333" />
+    <SolidColorBrush x:Key="IconBrush" Color="#666666" />
+
+    <!--  ========== TextBox 样式 ==========  -->
+    <Style x:Key="UnderlineTextBoxStyle" TargetType="{x:Type TextBox}">
+        <!--  默认属性  -->
+        <Setter Property="Height" Value="44" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Padding" Value="5,2,0,4" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  ===== 图标 =====  -->
+                        <ContentPresenter
+                            x:Name="IconPresenter"
+                            Grid.RowSpan="2"
+                            Width="{Binding (helpers:TextBoxHelper.IconWidth), RelativeSource={RelativeSource TemplatedParent}}"
+                            Height="{Binding (helpers:TextBoxHelper.IconHeight), RelativeSource={RelativeSource TemplatedParent}}"
+                            Margin="0,0,8,4"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Content="{Binding (helpers:TextBoxHelper.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+                            Opacity="0.5" />
+
+                        <!--  ===== 文本框 =====  -->
+                        <ScrollViewer
+                            x:Name="PART_ContentHost"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Focusable="False" />
+
+                        <!--  ===== 提示文字 =====  -->
+                        <TextBlock
+                            x:Name="Placeholder"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="{TemplateBinding Padding}"
+                            VerticalAlignment="Center"
+                            FontSize="{TemplateBinding FontSize}"
+                            Foreground="{StaticResource PlaceholderBrush}"
+                            IsHitTestVisible="False"
+                            Text="{Binding (helpers:TextBoxHelper.Placeholder), RelativeSource={RelativeSource TemplatedParent}}" />
+
+                        <!--  ===== 下划线 =====  -->
+                        <Rectangle
+                            x:Name="Underline"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Height="2"
+                            Margin="0,4,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Bottom"
+                            Fill="{StaticResource LineBrush}"
+                            RenderOptions.EdgeMode="Aliased" />
+
+                        <!--  ===== 焦点高亮线 =====  -->
+                        <Rectangle
+                            x:Name="UnderlineFocus"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Height="2"
+                            Margin="0,4,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Bottom"
+                            Fill="{StaticResource LineFocusBrush}"
+                            Opacity="0"
+                            RenderOptions.EdgeMode="Aliased" />
+
+                        <!--  ===== 错误线 =====  -->
+                        <Rectangle
+                            x:Name="UnderlineError"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Height="2"
+                            Margin="0,4,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Bottom"
+                            Fill="{StaticResource LineErrorBrush}"
+                            Opacity="0"
+                            RenderOptions.EdgeMode="Aliased" />
+
+                        <!--  ===== 错误提示文本 =====  -->
+                        <TextBlock
+                            x:Name="ErrorText"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="{TemplateBinding Padding}"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Foreground="{StaticResource LineErrorBrush}"
+                            IsHitTestVisible="False"
+                            Visibility="Collapsed" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <!--  ===== 空值显示提示 =====  -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value="" />
+                                <Condition Property="IsFocused" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Placeholder" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value="{x:Null}" />
+                                <Condition Property="IsFocused" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Placeholder" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+
+                        <!--  ===== 非空或焦点时隐藏提示 =====  -->
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="Placeholder" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Underline" Property="Fill" Value="{StaticResource LineFocusBrush}" />
+                            <Setter TargetName="UnderlineFocus" Property="Opacity" Value="1" />
+                            <Setter TargetName="IconPresenter" Property="Opacity" Value="1" />
+                        </Trigger>
+
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="Placeholder" Property="Visibility" Value="Visible" />
+                        </Trigger>
+
+                        <!--  ===== 鼠标悬停 =====  -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Underline" Property="Fill" Value="{StaticResource LineHoverBrush}" />
+                        </Trigger>
+
+                        <!--  ===== 错误状态 =====  -->
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter TargetName="Underline" Property="Fill" Value="{StaticResource LineErrorBrush}" />
+                            <Setter TargetName="UnderlineError" Property="Opacity" Value="1" />
+                            <Setter TargetName="Placeholder" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="ErrorText" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="ErrorText" Property="Text" Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="IconPresenter" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

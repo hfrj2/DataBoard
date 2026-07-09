@@ -1,0 +1,25 @@
+<Application
+    x:Class="DataBoard.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converter="clr-namespace:DataBoard.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:DataBoard"
+    d1p1:Ignorable="d"
+    StartupUri="Views/LoginWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Dictionary/ButtonDictionary.xaml" />
+                <ResourceDictionary Source="/Dictionary/TextBoxDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Converter:HeightToCornerConverter x:Key="HeightToCornerConverter" />
+            <vm:ViewModelLocator
+                xmlns:vm="clr-namespace:DataBoard.ViewModel"
+                x:Key="Locator"
+                d:IsDataSource="True" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
