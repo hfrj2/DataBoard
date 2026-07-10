@@ -20,6 +20,14 @@
                             Foreground="{TemplateBinding Foreground}"
                             Text="{TemplateBinding Content}" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#4BA2EF" />
+                        </Trigger>
+
+
+                    </ControlTemplate.Triggers>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

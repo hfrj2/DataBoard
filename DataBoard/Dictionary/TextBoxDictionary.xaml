@@ -127,23 +127,38 @@
                     </Grid>
 
                     <ControlTemplate.Triggers>
-                        <!--  ===== 空值显示提示 =====  -->
+                        <!--  ===== 0. 🟢 兜底：任何失去焦点的情况，恢复默认样式 =====  -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="Text" Value="" />
                                 <Condition Property="IsFocused" Value="False" />
+                                <!--  不限制 Text，任何失去焦点都执行  -->
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Placeholder" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Underline" Property="Fill" Value="{StaticResource LineBrush}" />
+                            <Setter TargetName="UnderlineFocus" Property="Opacity" Value="0" />
+                            <Setter TargetName="IconPresenter" Property="Opacity" Value="0.5" />
+                        </MultiTrigger>
+
+                        <!--  ===== 1. 失去焦点 + 文本为空：覆盖兜底，显示占位符 =====  -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsFocused" Value="False" />
+                                <Condition Property="Text" Value="" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Placeholder" Property="Visibility" Value="Visible" />
+                            <!--  图标、下划线已经在兜底中设置好了，这里不需要重复  -->
                         </MultiTrigger>
+
+                        <!--  ===== 2. 失去焦点 + 文本为 Null：覆盖兜底，显示占位符 =====  -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="Text" Value="{x:Null}" />
                                 <Condition Property="IsFocused" Value="False" />
+                                <Condition Property="Text" Value="{x:Null}" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Placeholder" Property="Visibility" Value="Visible" />
                         </MultiTrigger>
 
-                        <!--  ===== 非空或焦点时隐藏提示 =====  -->
+                        <!--  ===== 3. 有焦点：覆盖兜底，高亮状态 =====  -->
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="Placeholder" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="Underline" Property="Fill" Value="{StaticResource LineFocusBrush}" />
@@ -151,16 +166,12 @@
                             <Setter TargetName="IconPresenter" Property="Opacity" Value="1" />
                         </Trigger>
 
-                        <Trigger Property="Text" Value="">
-                            <Setter TargetName="Placeholder" Property="Visibility" Value="Visible" />
-                        </Trigger>
-
-                        <!--  ===== 鼠标悬停 =====  -->
+                        <!--  ===== 4. 鼠标悬停 =====  -->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Underline" Property="Fill" Value="{StaticResource LineHoverBrush}" />
                         </Trigger>
 
-                        <!--  ===== 错误状态 =====  -->
+                        <!--  ===== 5. 错误状态 =====  -->
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="Underline" Property="Fill" Value="{StaticResource LineErrorBrush}" />
                             <Setter TargetName="UnderlineError" Property="Opacity" Value="1" />

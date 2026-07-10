@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight;
+using System;
 
 namespace DataBoard.ViewModel
 {
@@ -29,6 +30,11 @@ namespace DataBoard.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+        }
+
+        internal void Show()
+        {
+            throw new NotImplementedException();
         }
     }
 }

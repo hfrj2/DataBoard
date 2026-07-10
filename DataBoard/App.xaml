@@ -13,6 +13,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Dictionary/ButtonDictionary.xaml" />
                 <ResourceDictionary Source="/Dictionary/TextBoxDictionary.xaml" />
+                <ResourceDictionary Source="/Dictionary/TextBlockDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Converter:HeightToCornerConverter x:Key="HeightToCornerConverter" />
