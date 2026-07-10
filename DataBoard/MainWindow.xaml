@@ -1,29 +1,138 @@
-﻿<Window x:Class="DataBoard.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DataBoard"
-        WindowStyle="None"
-        mc:Ignorable="d"
-        Background="#282828"
-        Title="MainWindow" Height="700" Width="1200">
+﻿<Window
+    x:Class="DataBoard.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DataBoard"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="1200"
+    Height="700"
+    Background="#282828"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
     <WindowChrome.WindowChrome>
-        <WindowChrome/>
+        <WindowChrome CaptionHeight="45" />
     </WindowChrome.WindowChrome>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="7*" />
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
-        <!-- 0 0-->
-        <Border Background="#0C7D95" />
+        <!--  0 0 + 1 0  -->
+        <Border Grid.RowSpan="2" Background="#282828">
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="30"
+                    Opacity="0.8"
+                    ShadowDepth="0"
+                    Color="Black" />
+            </Border.Effect>
+        </Border>
+        <!--  line -->
+        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="0 0 0 1" >
+            
+            
+        </Border>
+        
+        
+        <!--  0 0  -->
+        <Border Background="#0C7D95">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="22"
+                Foreground="White"
+                Text="数据看板" />
+        </Border>
+        <!--  0 1  -->
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="15"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            FontSize="20"
+            Foreground="White"
+            Text="{Binding SystemTime}" />
 
+        <!--    -->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <!--    -->
+            <StackPanel>
+                <RadioButton
+                    Content="主页"
+                    Style="{StaticResource RadioButtonMenuStyle}"
+                    Tag="&#xf17a;" />
+                <RadioButton
+                    Content="停机数据"
+                    Style="{StaticResource RadioButtonMenuStyle}"
+                    Tag="&#xf233;" />
+                <RadioButton
+                    Content="生产线"
+                    Style="{StaticResource RadioButtonMenuStyle}"
+                    Tag="&#xf233;" />
+                <RadioButton
+                    Content="子线类型"
+                    Style="{StaticResource RadioButtonMenuStyle}"
+                    Tag="&#xf1a4;" />
+                <RadioButton
+                    Content="停机类型  "
+                    Style="{StaticResource RadioButtonMenuStyle}"
+                    Tag="&#xf208;" />
+                <RadioButton
+                    Content="用户列表  "
+                    Style="{StaticResource RadioButtonMenuStyle}"
+                    Tag="&#xf2be;" />
+            </StackPanel>
+
+
+
+
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Margin="0,0,0,20"
+                        Content="{Binding AppData.CurrentUser.Name}"
+                        Style="{StaticResource HomePageButton}"
+                        Tag="&#xf2bd;" />
+
+                    <Button
+                        Grid.Column="1"
+                        Margin="0,0,0,20"
+                        Content="退出"
+                        Style="{StaticResource HomePageButton}"
+                        Tag="&#xf011;" Click="Button_Click" />
+                </Grid>
+
+
+            </StackPanel>
+
+        </Grid>
+
+        <!-- CONTINER-->
+        <ContentControl x:Name="container" Grid.Column="1" Grid.Row="1">
+            
+        </ContentControl>
 
     </Grid>
 </Window>

@@ -1,20 +1,12 @@
+using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DataBoard.ViewModel
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// You can also use Blend to data bind with the tool's support.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
+
     public class MainViewModel : ViewModelBase
     {
         /// <summary>
@@ -22,15 +14,34 @@ namespace DataBoard.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+
+            appData = ServiceLocator.Current.GetInstance<AppData>();
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    this.SystemTime = DateTime.Now.ToString();
+                    Thread.Sleep(1000);
+                }
+            });
         }
+
+        private AppData appData;
+
+        public AppData AppData
+        {
+            get { return appData; }
+            set{ appData = value; }
+        }
+
+        private string systemTime;
+
+        public string SystemTime
+        {
+            get { return systemTime; }
+            set { systemTime = value;RaisePropertyChanged(); }
+        }
+
 
         internal void Show()
         {

@@ -10,7 +10,7 @@ namespace DataBoard
 {
     public class AppData:ViewModelBase
     {
-        private UserInfo userInfo=new UserInfo();
+        private UserInfo userInfo=new UserInfo() { Name="admin",Password="0"};
 
         public UserInfo CurrentUser
         {

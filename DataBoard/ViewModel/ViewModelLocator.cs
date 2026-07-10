@@ -33,11 +33,26 @@ namespace DataBoard.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
+            SimpleIoc.Default.Register<AppData>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginWindowViewModel>();
-            SimpleIoc.Default.Register<AppData>();
+
+            SimpleIoc.Default.Register<HistoryViewModel>();
+            SimpleIoc.Default.Register<IndexViewModel>();
+            SimpleIoc.Default.Register<LineViewModel>();
+            SimpleIoc.Default.Register<StopTypeViewModel>();
+            SimpleIoc.Default.Register<SubLineViewModel>();
+            SimpleIoc.Default.Register<UserInfoViewModel>();
+
             SimpleIoc.Default.Register<IDialogService, LoginWindow>();
+
+            SimpleIoc.Default.Register<HistoryView>();
+            SimpleIoc.Default.Register<IndexView>();
+            SimpleIoc.Default.Register<LineView>();
+            SimpleIoc.Default.Register<StopTypeView>();
+            SimpleIoc.Default.Register<SubLineView>();
+            SimpleIoc.Default.Register<UserInfoView>();
+
         }
 
         public MainViewModel Main
@@ -53,6 +68,54 @@ namespace DataBoard.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<LoginWindowViewModel>();
+            }
+        }
+
+        public HistoryViewModel History
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HistoryViewModel>();
+            }
+        }
+
+        public IndexViewModel Index
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<IndexViewModel>();
+            }
+        }
+
+        public LineViewModel Line
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LineViewModel>();
+            }
+        }
+
+        public StopTypeViewModel StopType
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<StopTypeViewModel>();
+            }
+        }
+
+        public SubLineViewModel SubLine
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SubLineViewModel>();
+            }
+        }
+
+        public UserInfoViewModel UserInfo
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<UserInfoViewModel>();
             }
         }
 
