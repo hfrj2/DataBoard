@@ -8,7 +8,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
 
-                    <StackPanel x:Name="_grid" Orientation="Horizontal" Margin="0" MinHeight="45">
+                    <StackPanel
+                        x:Name="_grid"
+                        MinHeight="45"
+                        Margin="0"
+                        Orientation="Horizontal">
 
                         <TextBlock
                             Margin="10,0,5,0"

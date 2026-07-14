@@ -37,13 +37,14 @@
                     Color="Black" />
             </Border.Effect>
         </Border>
-        <!--  line -->
-        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" BorderThickness="0 0 0 1" >
-            
-            
-        </Border>
-        
-        
+        <!--  line  -->
+        <Border
+            Grid.Row="0"
+            Grid.Column="1"
+            BorderBrush="Gray"
+            BorderThickness="0,0,0,1" />
+
+
         <!--  0 0  -->
         <Border Background="#0C7D95">
             <TextBlock
@@ -75,26 +76,38 @@
             <!--    -->
             <StackPanel>
                 <RadioButton
+                    Uid="IndexView"
+                    Checked="RadioButton_Checked"
                     Content="主页"
                     Style="{StaticResource RadioButtonMenuStyle}"
                     Tag="&#xf17a;" />
                 <RadioButton
+                    Uid="HistoryView"
+                    Checked="RadioButton_Checked"
                     Content="停机数据"
                     Style="{StaticResource RadioButtonMenuStyle}"
-                    Tag="&#xf233;" />
+                    Tag="&#xf249;" />
                 <RadioButton
+                    Uid="LineView"
+                    Checked="RadioButton_Checked"
                     Content="生产线"
                     Style="{StaticResource RadioButtonMenuStyle}"
                     Tag="&#xf233;" />
                 <RadioButton
+                    Uid="SubLineView"
+                    Checked="RadioButton_Checked"
                     Content="子线类型"
                     Style="{StaticResource RadioButtonMenuStyle}"
                     Tag="&#xf1a4;" />
                 <RadioButton
+                    Uid="StopTypeView"
+                    Checked="RadioButton_Checked"
                     Content="停机类型  "
                     Style="{StaticResource RadioButtonMenuStyle}"
                     Tag="&#xf208;" />
                 <RadioButton
+                    Uid="UserInfoView"
+                    Checked="RadioButton_Checked"
                     Content="用户列表  "
                     Style="{StaticResource RadioButtonMenuStyle}"
                     Tag="&#xf2be;" />
@@ -119,9 +132,11 @@
                     <Button
                         Grid.Column="1"
                         Margin="0,0,0,20"
+                        Click="Button_Click"
+                        Command="{Binding ExitCommand}"
                         Content="退出"
                         Style="{StaticResource HomePageButton}"
-                        Tag="&#xf011;" Click="Button_Click" />
+                        Tag="&#xf011;" />
                 </Grid>
 
 
@@ -129,10 +144,11 @@
 
         </Grid>
 
-        <!-- CONTINER-->
-        <ContentControl x:Name="container" Grid.Column="1" Grid.Row="1">
-            
-        </ContentControl>
+        <!--  CONTINER  -->
+        <ContentControl
+            x:Name="container"
+            Grid.Row="1"
+            Grid.Column="1" />
 
     </Grid>
 </Window>

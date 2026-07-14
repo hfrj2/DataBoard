@@ -1,8 +1,13 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using static System.Net.Mime.MediaTypeNames;
+
 
 namespace DataBoard.ViewModel
 {
@@ -40,6 +45,17 @@ namespace DataBoard.ViewModel
         {
             get { return systemTime; }
             set { systemTime = value;RaisePropertyChanged(); }
+        }
+
+        public RelayCommand ExitCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    System.Windows.Application.Current.Shutdown();
+                });
+            }
         }
 
 

@@ -106,6 +106,8 @@
     <Compile Include="Model\Line.cs">
       <DependentUpon>qwer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Provider\IProvider.cs" />
+    <Compile Include="Model\Provider\LineProvider.cs" />
     <Compile Include="Model\qwer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -130,6 +132,8 @@
     <Compile Include="Model\UserInfo.cs">
       <DependentUpon>qwer.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddLineWindowViewModel.cs" />
+    <Compile Include="ViewModel\EditLineWindowViewModel.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\IndexViewModel.cs" />
     <Compile Include="ViewModel\LineViewModel.cs" />
@@ -159,6 +163,12 @@
     </Compile>
     <Compile Include="Views\UserInfoView.xaml.cs">
       <DependentUpon>UserInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddLineWindow.xaml.cs">
+      <DependentUpon>AddLineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditLineWindow.xaml.cs">
+      <DependentUpon>EditLineWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary\ButtonDictionary.xaml">
       <SubType>Designer</SubType>
@@ -213,6 +223,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

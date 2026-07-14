@@ -24,7 +24,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
-          <Property Name="UserInfold" Type="int" Nullable="false" />
+          <Property Name="UserInfoId" Type="int" Nullable="false" />
           <Property Name="InsertDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="StopType">
@@ -49,7 +49,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="32" Nullable="false" />
           <Property Name="Role" Type="int" Nullable="false" />
@@ -91,6 +91,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Line_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="Line" Type="Self.Line" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Line">
+              <PropertyRef Name="UserInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="qwerModelStoreContainer">
           <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Line" EntityType="Self.Line" Schema="dbo" store:Type="Tables" />
@@ -108,6 +120,10 @@
           <AssociationSet Name="FK_History_StopType" Association="Self.FK_History_StopType">
             <End Role="StopType" EntitySet="StopType" />
             <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Line_UserInfo" Association="Self.FK_Line_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Line" EntitySet="Line" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -132,6 +148,10 @@
             <End Role="StopType" EntitySet="StopType" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
+          <AssociationSet Name="FK_Line_UserInfo" Association="qwerModel.FK_Line_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Line" EntitySet="Line" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="History">
           <Key>
@@ -155,9 +175,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Name="UserInfold" Type="Int32" Nullable="false" />
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
           <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="History" Relationship="qwerModel.FK_History_Line" FromRole="Line" ToRole="History" />
+          <NavigationProperty Name="UserInfo" Relationship="qwerModel.FK_Line_UserInfo" FromRole="Line" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="StopType">
           <Key>
@@ -183,11 +204,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="Int32" Nullable="false" />
           <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Line" Relationship="qwerModel.FK_Line_UserInfo" FromRole="UserInfo" ToRole="Line" />
         </EntityType>
         <Association Name="FK_History_dbo_SubLine">
           <End Type="qwerModel.SubLine" Role="SubLine" Multiplicity="1" />
@@ -225,6 +247,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Line_UserInfo">
+          <End Type="qwerModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="qwerModel.Line" Role="Line" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Line">
+              <PropertyRef Name="UserInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -249,7 +283,7 @@
             <EntityTypeMapping TypeName="qwerModel.Line">
               <MappingFragment StoreEntitySet="Line">
                 <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
-                <ScalarProperty Name="UserInfold" ColumnName="UserInfold" />
+                <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

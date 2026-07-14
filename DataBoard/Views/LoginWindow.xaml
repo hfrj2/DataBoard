@@ -107,11 +107,11 @@
                 <Button
                     Grid.Row="3"
                     VerticalAlignment="Top"
+                    Command="{Binding CheckUserCommand2}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                     Content="登录"
                     Style="{StaticResource LoginButtonStyle}"
-                    WindowChrome.IsHitTestVisibleInChrome="True"
-                    Command="{Binding CheckUserCommand2}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
 
             </Grid>
 

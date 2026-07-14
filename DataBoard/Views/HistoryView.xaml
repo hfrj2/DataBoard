@@ -9,5 +9,11 @@
     d:DesignWidth="800"
     DataContext="{Binding Source={StaticResource Locator}, Path=History}"
     mc:Ignorable="d">
-    <Grid />
+    <Grid>
+        <TextBlock
+            FontSize="100"
+            Foreground="White"
+            Text="history" />
+
+    </Grid>
 </UserControl>

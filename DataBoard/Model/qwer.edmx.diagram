@@ -5,14 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c621a27e258445298661ca8ad66186f5" Name="Diagram1" ZoomLevel="109">
-        <EntityTypeShape EntityType="qwerModel.History" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="qwerModel.Line" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="qwerModel.StopType" Width="1.5" PointX="0.75" PointY="7.875" />
-        <EntityTypeShape EntityType="qwerModel.SubLine" Width="1.5" PointX="0.75" PointY="5.125" />
-        <EntityTypeShape EntityType="qwerModel.UserInfo" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="qwerModel.History" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="qwerModel.Line" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="qwerModel.StopType" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="qwerModel.SubLine" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="qwerModel.UserInfo" Width="1.5" PointX="0.75" PointY="1.5" />
         <AssociationConnector Association="qwerModel.FK_History_dbo_SubLine" />
         <AssociationConnector Association="qwerModel.FK_History_Line" />
         <AssociationConnector Association="qwerModel.FK_History_StopType" />
+        <AssociationConnector Association="qwerModel.FK_Line_UserInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

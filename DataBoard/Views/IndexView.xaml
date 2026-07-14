@@ -13,7 +13,10 @@
 
 
     <Grid>
-        <TextBlock Text="index" Foreground="White" FontSize="100"></TextBlock>
+        <TextBlock
+            FontSize="100"
+            Foreground="White"
+            Text="index" />
 
-    </Grid >
+    </Grid>
 </UserControl>
