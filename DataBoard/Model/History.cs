@@ -26,5 +26,6 @@ namespace DataBoard.Model
         public virtual SubLine SubLine { get; set; }
         public virtual Line Line { get; set; }
         public virtual StopType StopType { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
     }
 }

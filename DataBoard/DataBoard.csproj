@@ -108,6 +108,8 @@
     </Compile>
     <Compile Include="Model\Provider\IProvider.cs" />
     <Compile Include="Model\Provider\LineProvider.cs" />
+    <Compile Include="Model\Provider\StopTypeProvider.cs" />
+    <Compile Include="Model\Provider\SublineProvider.cs" />
     <Compile Include="Model\qwer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,7 +135,11 @@
       <DependentUpon>qwer.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AddLineWindowViewModel.cs" />
+    <Compile Include="ViewModel\AddStopTypeWindowViewModel.cs" />
+    <Compile Include="ViewModel\AddSubLineWindowViewModel.cs" />
     <Compile Include="ViewModel\EditLineWindowViewModel.cs" />
+    <Compile Include="ViewModel\EditStopTypeWindowViewModel.cs" />
+    <Compile Include="ViewModel\EditSubLineWindowViewModel.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\IndexViewModel.cs" />
     <Compile Include="ViewModel\LineViewModel.cs" />
@@ -167,8 +173,20 @@
     <Compile Include="Windows\AddLineWindow.xaml.cs">
       <DependentUpon>AddLineWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddStopTypeWindow.xaml.cs">
+      <DependentUpon>AddStopTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddSubLineWindow.xaml.cs">
+      <DependentUpon>AddSubLineWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\EditLineWindow.xaml.cs">
       <DependentUpon>EditLineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditStopTypeWindow.xaml.cs">
+      <DependentUpon>EditStopTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditSubLineWindow.xaml.cs">
+      <DependentUpon>EditSubLineWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary\ButtonDictionary.xaml">
       <SubType>Designer</SubType>
@@ -230,7 +248,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\AddStopTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddSubLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\EditLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditStopTypeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditSubLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

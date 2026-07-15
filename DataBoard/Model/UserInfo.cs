@@ -17,7 +17,10 @@ namespace DataBoard.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserInfo()
         {
+            this.History = new HashSet<History>();
             this.Line = new HashSet<Line>();
+            this.StopType = new HashSet<StopType>();
+            this.SubLine = new HashSet<SubLine>();
         }
     
         public int Id { get; set; }
@@ -27,6 +30,12 @@ namespace DataBoard.Model
         public System.DateTime InsertDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<History> History { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Line> Line { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StopType> StopType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubLine> SubLine { get; set; }
     }
 }

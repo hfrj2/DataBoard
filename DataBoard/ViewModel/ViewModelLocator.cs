@@ -106,12 +106,44 @@ namespace DataBoard.ViewModel
             }
         }
 
+        public AddSubLineWindowViewModel AddSubLineWindow
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddSubLineWindowViewModel>();
+            }
+        }
+
+        public AddStopTypeWindowViewModel AddStopTypeLineWindow
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddStopTypeWindowViewModel>();
+            }
+        }
+
 
         public EditLineWindowViewModel EditLineWindow
         {
             get
             {
                 return ServiceLocator.Current.GetInstance<EditLineWindowViewModel>();
+            }
+        }
+
+        public EditSubLineWindowViewModel EditSubLineWindow
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EditSubLineWindowViewModel>();
+            }
+        }
+
+        public EditStopTypeWindowViewModel EditStopTypeWindow
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EditStopTypeWindowViewModel>();
             }
         }
 
