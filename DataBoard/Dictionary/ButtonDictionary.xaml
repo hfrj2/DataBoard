@@ -109,8 +109,8 @@
 
                             <TextBlock
                                 x:Name="T1"
-                              Margin="10 0 0 0"
                                 Grid.Column="0"
+                                Margin="10,0,0,0"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontFamily="/Fonts/#FontAwesome"
@@ -118,7 +118,7 @@
                                 Text="{TemplateBinding Tag}" />
 
                             <TextBlock
-                                   x:Name="T2"
+                                x:Name="T2"
                                 Grid.Column="1"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -130,11 +130,71 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="White"/>
-                            <Setter TargetName="T1" Property="Foreground" Value="#28292D"/>
-                            <Setter TargetName="T2" Property="Foreground" Value="#28292D"/>
+                            <Setter TargetName="border" Property="Background" Value="White" />
+                            <Setter TargetName="T1" Property="Foreground" Value="#28292D" />
+                            <Setter TargetName="T2" Property="Foreground" Value="#28292D" />
                         </Trigger>
-                        
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+    </Style>
+
+    <Style x:Key="AddLineView_ButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Width" Value="80" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="#29282D" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="border"
+                        Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
+                        BorderBrush="#28292D"
+                        BorderThickness="2"
+                        CornerRadius="8">
+                        <Grid x:Name="grid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                x:Name="T1"
+                                Grid.Column="0"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="/Fonts/#FontAwesome"
+                                Text="{TemplateBinding Tag}" />
+
+                            <TextBlock
+                                x:Name="T2"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{TemplateBinding Content}" />
+
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#28292D" />
+                            <Setter TargetName="T1" Property="Foreground" Value="White" />
+                            <Setter TargetName="T2" Property="Foreground" Value="White" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="White" />
+                            <Setter TargetName="T1" Property="Foreground" Value="#28292D" />
+                            <Setter TargetName="T2" Property="Foreground" Value="#28292D" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
 

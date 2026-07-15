@@ -10,12 +10,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DataBoard.ViewModel
 {
     public class AddLineWindowViewModel:ViewModelBase
     {
-        private Line line;
+        private Line line = new Line();
 
         public Line Line
         {
@@ -23,11 +24,11 @@ namespace DataBoard.ViewModel
             set { line = value;RaisePropertyChanged(); }
         }
 
-        public RelayCommand AddLineCommand 
+        public RelayCommand<Window> AddLineCommand 
         {
         get
             {
-                return new RelayCommand(() =>
+                return new RelayCommand<Window>((window) =>
                     {
                         if(string.IsNullOrEmpty(line.Name)) return;
                         if (line.Name.Length > 32) return;
@@ -40,6 +41,7 @@ namespace DataBoard.ViewModel
                         {
                             var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
                             dialog.ShowMessageBox("添加成功", "提示");
+                            window.Close();
                           
                         }
                         else

@@ -1,6 +1,8 @@
-﻿using GalaSoft.MvvmLight.Views;
+﻿using DataBoard.Windows;
+using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,12 +49,23 @@ namespace DataBoard.Views
 
         public Task ShowMessage(string message, string title)
         {
-            throw new NotImplementedException();
+            switch (message)
+            {
+                case "AddLineWindow": new AddLineWindow().ShowDialog(); break;
+                case "EditLineWindow": new EditLineWindow().ShowDialog(); break;
+                default:
+                    break;
+            }
+            return null;
         }
 
         public Task ShowMessage(string message, string title, string buttonText, Action afterHideCallback)
         {
-            throw new NotImplementedException();
+            var result = MessageBox.Show(message, title, MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+                return new Task(afterHideCallback);
+            else
+                return new Task(() => { });
         }
 
         public Task<bool> ShowMessage(string message, string title, string buttonConfirmText, string buttonCancelText, Action<bool> afterHideCallback)
