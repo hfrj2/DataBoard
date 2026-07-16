@@ -1,21 +1,22 @@
 ﻿<Window
-    x:Class="DataBoard.Windows.AddLineWindow"
+    x:Class="DataBoard.Windows.EditStopTypeWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:DataBoard.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="添加生产线"
+    Title="修改停机类型"
     Width="400"
     Height="200"
     Background="#282828"
-    DataContext="{Binding Source={StaticResource Locator}, Path=AddLineWindow}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=EditStopTypeWindow}"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="200" />
     </WindowChrome.WindowChrome>
+
     <Border BorderBrush="White" BorderThickness="1">
         <Grid>
             <TextBlock
@@ -32,14 +33,14 @@
                 <TextBox
                     Height="35"
                     MaxLength="32"
-                    Text="{Binding Line.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding StopType.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     WindowChrome.IsHitTestVisibleInChrome="True" />
                 <Button
                     Grid.Column="1"
                     Margin="15"
-                    Command="{Binding AddLineCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AddLineWindow}}"
-                    Content="添加"
+                    Command="{Binding EditStopTypeCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStopTypeWindow}}"
+                    Content="修改"
                     FontSize="16"
                     Style="{StaticResource LineView_ButtonStyle}"
                     Tag="&#xf055;"
