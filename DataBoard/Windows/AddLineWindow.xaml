@@ -5,14 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:DataBoard.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     Title="添加生产线"
     Width="400"
     Height="200"
     Background="#282828"
     DataContext="{Binding Source={StaticResource Locator}, Path=AddLineWindow}"
     WindowStartupLocation="CenterScreen"
-    WindowStyle="None">
+    WindowStyle="None"
+    mc:Ignorable="d">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="200" />
     </WindowChrome.WindowChrome>

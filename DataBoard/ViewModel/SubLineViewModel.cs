@@ -1,9 +1,4 @@
-﻿using DataBoard.Model;
-using DataBoard.Model.Provider;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
+﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,81 +9,5 @@ namespace DataBoard.ViewModel
 {
     public class SubLineViewModel : ViewModelBase
     {
-
-
-        private readonly IProvider<SubLine> provider = new SublineProvider();
-        public SubLineViewModel()
-        {
-            sublines = provider.Select();
-        }
-
-
-        private List<SubLine> sublines;
-        public List<SubLine> SubLines
-        {
-            get { return sublines; }
-            set { sublines = value; RaisePropertyChanged(); }
-        }
-
-        //添加子线
-        public RelayCommand OpenAddSubLineWindowCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
-                    dialog.ShowMessage("AddSubLineWindow", "提示");
-                    SubLines = provider.Select();
-                });
-            }
-        }
-
-        //修改
-        public RelayCommand<Line> OpenEditSubLineWindowCommand
-        {
-            get
-            {
-                return new RelayCommand<Line>((line) =>
-                {
-                    var vm = SimpleIoc.Default.GetInstance<EditLineWindowViewModel>();
-                    if (vm == null) return;
-                    vm.Line = line;
-                    var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
-                    dialog.ShowMessage("EditSubLineWindow", "提示");
-                    SubLines = provider.Select();
-                });
-            }
-        }
-
-        // 删除生产线
-        public RelayCommand<SubLine> DeleteLineWindowCommand
-        {
-            get
-            {
-                return new RelayCommand<SubLine>((model) =>
-                {
-                    if (model == null) return;
-                    var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
-                    var Task = dialog.ShowMessage("确定要删除吗？", "提示", "", () =>
-                    {
-                        var count = provider.Delete(model);
-                        if (count > 0)
-                        {
-                            dialog.ShowMessageBox("删除成功", "提示");
-                            SubLines = provider.Select();
-                        }
-
-                        else
-                        {
-                            dialog.ShowMessageBox("删除失败", "提示");
-                        }
-                    });
-                    Task.Start();
-
-                });
-            }
-        }
     }
 }
-

@@ -18,39 +18,37 @@
         <Style.Triggers>
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="Red" />
+                <Setter Property="Foreground" Value="Red"/>
                 <Setter Property="Cursor" Value="Hand" />
             </Trigger>
 
 
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="Cursor" Value="Hand" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
 
-    <Style
-        x:Key="AddLine_TextBlockIcon"
-        BasedOn="{StaticResource DataGrid_TextBlock}"
-        TargetType="{x:Type TextBlock}">
-        <Setter Property="Text" Value="&#xf011;" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
-        <Setter Property="Margin" Value="15" />
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="FontFamily" Value="/Fonts/#FontAwesome" />
-        <Setter Property="Foreground" Value="White" />
+    <Style x:Key="AddLine_TextBlockIcon" TargetType="{x:Type TextBlock}" 
+           BasedOn="{StaticResource DataGrid_TextBlock}">
+        <Setter Property="Text" Value="&#xf011;"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="15"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontFamily" Value="/Fonts/#FontAwesome"/>
+        <Setter Property="Foreground" Value="White"/>
         <Style.Triggers>
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="Red" />
+                <Setter Property="Foreground" Value="Red"/>
                 <Setter Property="Cursor" Value="Hand" />
             </Trigger>
 
 
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Cursor" Value="Hand" />
             </Trigger>
         </Style.Triggers>

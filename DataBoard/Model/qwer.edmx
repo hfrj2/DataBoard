@@ -91,18 +91,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_History_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
-          <End Role="History" Type="Self.History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="History">
-              <PropertyRef Name="UserInfold" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Line_UserInfo">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="Line" Type="Self.Line" Multiplicity="*" />
@@ -112,30 +100,6 @@
             </Principal>
             <Dependent Role="Line">
               <PropertyRef Name="UserInfoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StopType_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
-          <End Role="StopType" Type="Self.StopType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StopType">
-              <PropertyRef Name="UserInfo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubLine_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
-          <End Role="SubLine" Type="Self.SubLine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SubLine">
-              <PropertyRef Name="UserInfold" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -157,21 +121,9 @@
             <End Role="StopType" EntitySet="StopType" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
-          <AssociationSet Name="FK_History_UserInfo" Association="Self.FK_History_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="History" EntitySet="History" />
-          </AssociationSet>
           <AssociationSet Name="FK_Line_UserInfo" Association="Self.FK_Line_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Line" EntitySet="Line" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StopType_UserInfo" Association="Self.FK_StopType_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="StopType" EntitySet="StopType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubLine_UserInfo" Association="Self.FK_SubLine_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="SubLine" EntitySet="SubLine" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -196,21 +148,9 @@
             <End Role="StopType" EntitySet="StopType" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
-          <AssociationSet Name="FK_History_UserInfo" Association="qwerModel.FK_History_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="History" EntitySet="History" />
-          </AssociationSet>
           <AssociationSet Name="FK_Line_UserInfo" Association="qwerModel.FK_Line_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Line" EntitySet="Line" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StopType_UserInfo" Association="qwerModel.FK_StopType_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="StopType" EntitySet="StopType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubLine_UserInfo" Association="qwerModel.FK_SubLine_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="SubLine" EntitySet="SubLine" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="History">
@@ -228,7 +168,6 @@
           <NavigationProperty Name="SubLine" Relationship="qwerModel.FK_History_dbo_SubLine" FromRole="History" ToRole="SubLine" />
           <NavigationProperty Name="Line" Relationship="qwerModel.FK_History_Line" FromRole="History" ToRole="Line" />
           <NavigationProperty Name="StopType" Relationship="qwerModel.FK_History_StopType" FromRole="History" ToRole="StopType" />
-          <NavigationProperty Name="UserInfo" Relationship="qwerModel.FK_History_UserInfo" FromRole="History" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Line">
           <Key>
@@ -250,7 +189,6 @@
           <Property Name="UserInfo" Type="Int32" Nullable="false" />
           <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="History" Relationship="qwerModel.FK_History_StopType" FromRole="StopType" ToRole="History" />
-          <NavigationProperty Name="UserInfo1" Relationship="qwerModel.FK_StopType_UserInfo" FromRole="StopType" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="SubLine">
           <Key>
@@ -261,7 +199,6 @@
           <Property Name="UserInfold" Type="Int32" Nullable="false" />
           <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="History" Relationship="qwerModel.FK_History_dbo_SubLine" FromRole="SubLine" ToRole="History" />
-          <NavigationProperty Name="UserInfo" Relationship="qwerModel.FK_SubLine_UserInfo" FromRole="SubLine" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -272,10 +209,7 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="Int32" Nullable="false" />
           <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="History" Relationship="qwerModel.FK_History_UserInfo" FromRole="UserInfo" ToRole="History" />
           <NavigationProperty Name="Line" Relationship="qwerModel.FK_Line_UserInfo" FromRole="UserInfo" ToRole="Line" />
-          <NavigationProperty Name="StopType" Relationship="qwerModel.FK_StopType_UserInfo" FromRole="UserInfo" ToRole="StopType" />
-          <NavigationProperty Name="SubLine" Relationship="qwerModel.FK_SubLine_UserInfo" FromRole="UserInfo" ToRole="SubLine" />
         </EntityType>
         <Association Name="FK_History_dbo_SubLine">
           <End Type="qwerModel.SubLine" Role="SubLine" Multiplicity="1" />
@@ -313,18 +247,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_History_UserInfo">
-          <End Type="qwerModel.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="qwerModel.History" Role="History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="History">
-              <PropertyRef Name="UserInfold" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Line_UserInfo">
           <End Type="qwerModel.UserInfo" Role="UserInfo" Multiplicity="1" />
           <End Type="qwerModel.Line" Role="Line" Multiplicity="*" />
@@ -334,30 +256,6 @@
             </Principal>
             <Dependent Role="Line">
               <PropertyRef Name="UserInfoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StopType_UserInfo">
-          <End Type="qwerModel.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="qwerModel.StopType" Role="StopType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StopType">
-              <PropertyRef Name="UserInfo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubLine_UserInfo">
-          <End Type="qwerModel.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="qwerModel.SubLine" Role="SubLine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SubLine">
-              <PropertyRef Name="UserInfold" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

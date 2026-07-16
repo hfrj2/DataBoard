@@ -66,13 +66,13 @@ namespace DataBoard.ViewModel
         {
             get
             {
-                return new RelayCommand<Line>((model) =>
+                return new RelayCommand<Line>((line) =>
                 {
-                    if(model == null) return;
+                    if(line == null) return;
                     var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
                     var Task = dialog.ShowMessage("确定要删除吗？", "提示", "", () =>
                     {
-                        var count = lineProvider.Delete(model);
+                        var count = lineProvider.Delete(line);
                         if (count > 0)
                         { 
                             dialog.ShowMessageBox("删除成功", "提示");
