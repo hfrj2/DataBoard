@@ -24,6 +24,13 @@ namespace DataBoard.Model.Provider
             using (qwerEntities1 db = new qwerEntities1())
 
             {
+                // 如果 Id 为 0（默认值），手动获取下一个可用 Id
+                // 防止数据库列未设置 IDENTITY 时插入失败
+                if (t.Id == 0)
+                {
+                    var maxId = db.UserInfo.Max(u => (int?)u.Id) ?? 0;
+                    t.Id = maxId + 1;
+                }
                 db.Entry(t).State = System.Data.Entity.EntityState.Added;
                 return db.SaveChanges();
             }
