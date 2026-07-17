@@ -21,7 +21,11 @@ namespace DataBoard.Converter
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (value == null) return -1;
+            if (value.ToString() == "管理员")
+                return 0;
+            else
+                return 1;
         }
     }
 }

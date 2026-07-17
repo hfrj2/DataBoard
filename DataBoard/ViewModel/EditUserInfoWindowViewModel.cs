@@ -16,6 +16,19 @@ namespace DataBoard.ViewModel
 {
     public class EditUserInfoWindowViewModel : ViewModelBase
     {
+        public EditUserInfoWindowViewModel()
+        {
+            appData = ServiceLocator.Current.GetInstance<AppData>();
+
+        }
+
+        private AppData appData;
+
+        public AppData AppData
+        {
+            get { return appData; }
+            set { appData = value; }
+        }
 
         public Action Close;
 
