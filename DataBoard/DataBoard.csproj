@@ -108,6 +108,7 @@
     <Compile Include="Model\Line.cs">
       <DependentUpon>qwer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Model\UserInfo.cs" />
     <Compile Include="Model\Provider\HistoryProvider.cs" />
     <Compile Include="Model\Provider\IProvider.cs" />
     <Compile Include="Model\Provider\LineProvider.cs" />

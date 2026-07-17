@@ -62,8 +62,10 @@ namespace DataBoard.ViewModel
                     if (string.IsNullOrEmpty(CurrentUser.Password)) return;
                     if (CurrentUser.Name.Length > 32) return;
                     if (CurrentUser.Password.Length > 32) return;
+
                     var appData = ServiceLocator.Current.GetInstance<AppData>();
-                   
+
+                    this.CurrentUser.Role = this.CurrentUser.RoleModel.Id;
                     this.CurrentUser.InsertDate = DateTime.Now;
                     IProvider<UserInfo> provider = new UserInfoProvider();
                     var count = provider.Insert(this.CurrentUser);

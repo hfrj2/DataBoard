@@ -31,7 +31,7 @@ namespace DataBoard.ViewModel
         }
 
         //添加生产线
-        public RelayCommand OpenAddLineWindowCommand
+        public RelayCommand OpenAddUserInfoWindowCommand
         {
             get
             {
