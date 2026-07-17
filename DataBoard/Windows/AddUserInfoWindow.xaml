@@ -80,9 +80,9 @@
                     Height="35"
                     Margin="5"
                     DisplayMemberPath="Name"
+                    SelectedValuePath="Id"
                     ItemsSource="{Binding AppData.RoleModels}"
                     SelectedItem="{Binding CurrentUser.RoleModel}"
-                    Text="{Binding CurrentUser.Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
 

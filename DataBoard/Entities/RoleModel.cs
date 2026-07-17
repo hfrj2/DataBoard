@@ -10,7 +10,7 @@ namespace DataBoard.Entities
     {
 		private int id;
 
-		public int ID
+		public int Id
 		{
 			get { return id; }
 			set { id = value; }
