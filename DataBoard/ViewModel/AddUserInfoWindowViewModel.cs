@@ -42,16 +42,6 @@ namespace DataBoard.ViewModel
             set { userInfo = value; RaisePropertyChanged(); }
         }
 
-
-
-        private SubLine subline = new SubLine();
-
-        public SubLine SubLine
-        {
-            get { return subline; }
-            set { subline = value; RaisePropertyChanged(); }
-        }
-
         public RelayCommand<Window> AddUserInfoCommand
         {
             get

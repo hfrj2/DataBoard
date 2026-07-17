@@ -74,8 +74,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -98,6 +100,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppData.cs" />
+    <Compile Include="Controls\DateTimeControl.xaml.cs">
+      <DependentUpon>DateTimeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converter\HeightToCornerConverter.cs" />
     <Compile Include="Converter\RoleConverter.cs" />
     <Compile Include="Entities\RoleModel.cs" />
@@ -139,10 +144,12 @@
     <Compile Include="Model\UserInfo.cs">
       <DependentUpon>qwer.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddHistoryWindowViewModel.cs" />
     <Compile Include="ViewModel\AddLineWindowViewModel.cs" />
     <Compile Include="ViewModel\AddStopTypeWindowViewModel.cs" />
     <Compile Include="ViewModel\AddSubLineWindowViewModel.cs" />
     <Compile Include="ViewModel\AddUserInfoWindowViewModel.cs" />
+    <Compile Include="ViewModel\EditHistoryWindowViewModel.cs" />
     <Compile Include="ViewModel\EditLineWindowViewModel.cs" />
     <Compile Include="ViewModel\EditStopTypeWindowViewModel.cs" />
     <Compile Include="ViewModel\EditSubLineWindowViewModel.cs" />
@@ -177,6 +184,9 @@
     <Compile Include="Views\UserInfoView.xaml.cs">
       <DependentUpon>UserInfoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddHistoryWindow.xaml.cs">
+      <DependentUpon>AddHistoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddLineWindow.xaml.cs">
       <DependentUpon>AddLineWindow.xaml</DependentUpon>
     </Compile>
@@ -188,6 +198,9 @@
     </Compile>
     <Compile Include="Windows\AddUserInfoWindow.xaml.cs">
       <DependentUpon>AddUserInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditHistoryWindow.xaml.cs">
+      <DependentUpon>EditHistoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\EditLineWindow.xaml.cs">
       <DependentUpon>EditLineWindow.xaml</DependentUpon>
@@ -201,6 +214,10 @@
     <Compile Include="Windows\EditUserInfoWindow.xaml.cs">
       <DependentUpon>EditUserInfoWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\DateTimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dictionary\ButtonDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,6 +274,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\AddHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AddLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -270,6 +291,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddUserInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditHistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -90,7 +90,7 @@
                     ItemsSource="{Binding AppData.RoleModels}"
                     SelectedItem="{Binding UserInfo.RoleModel}"
                     SelectedValuePath="Name"
-                    Text="{Binding UserInfo.Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={StaticResource RoleConverter}}"
+                    Text="{Binding UserInfo.Role, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RoleConverter}}"
                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
 
