@@ -55,18 +55,6 @@
           <Property Name="Role" Type="int" Nullable="false" />
           <Property Name="InsertDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <Association Name="FK_History_dbo_SubLine">
-          <End Role="SubLine" Type="Self.SubLine" Multiplicity="1" />
-          <End Role="History" Type="Self.History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubLine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="History">
-              <PropertyRef Name="SubLineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_History_Line">
           <End Role="Line" Type="Self.Line" Multiplicity="1" />
           <End Role="History" Type="Self.History" Multiplicity="*" />
@@ -88,6 +76,18 @@
             </Principal>
             <Dependent Role="History">
               <PropertyRef Name="StopTypeld" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_SubLine">
+          <End Role="SubLine" Type="Self.SubLine" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubLine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="SubLineId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -145,16 +145,16 @@
           <EntitySet Name="StopType" EntityType="Self.StopType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubLine" EntityType="Self.SubLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_History_dbo_SubLine" Association="Self.FK_History_dbo_SubLine">
-            <End Role="SubLine" EntitySet="SubLine" />
-            <End Role="History" EntitySet="History" />
-          </AssociationSet>
           <AssociationSet Name="FK_History_Line" Association="Self.FK_History_Line">
             <End Role="Line" EntitySet="Line" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
           <AssociationSet Name="FK_History_StopType" Association="Self.FK_History_StopType">
             <End Role="StopType" EntitySet="StopType" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_SubLine" Association="Self.FK_History_SubLine">
+            <End Role="SubLine" EntitySet="SubLine" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
           <AssociationSet Name="FK_History_UserInfo" Association="Self.FK_History_UserInfo">
@@ -184,16 +184,16 @@
           <EntitySet Name="StopType" EntityType="qwerModel.StopType" />
           <EntitySet Name="SubLine" EntityType="qwerModel.SubLine" />
           <EntitySet Name="UserInfo" EntityType="qwerModel.UserInfo" />
-          <AssociationSet Name="FK_History_dbo_SubLine" Association="qwerModel.FK_History_dbo_SubLine">
-            <End Role="SubLine" EntitySet="SubLine" />
-            <End Role="History" EntitySet="History" />
-          </AssociationSet>
           <AssociationSet Name="FK_History_Line" Association="qwerModel.FK_History_Line">
             <End Role="Line" EntitySet="Line" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
           <AssociationSet Name="FK_History_StopType" Association="qwerModel.FK_History_StopType">
             <End Role="StopType" EntitySet="StopType" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_SubLine" Association="qwerModel.FK_History_SubLine">
+            <End Role="SubLine" EntitySet="SubLine" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
           <AssociationSet Name="FK_History_UserInfo" Association="qwerModel.FK_History_UserInfo">
@@ -225,9 +225,9 @@
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserInfold" Type="Int32" Nullable="false" />
           <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="SubLine" Relationship="qwerModel.FK_History_dbo_SubLine" FromRole="History" ToRole="SubLine" />
           <NavigationProperty Name="Line" Relationship="qwerModel.FK_History_Line" FromRole="History" ToRole="Line" />
           <NavigationProperty Name="StopType" Relationship="qwerModel.FK_History_StopType" FromRole="History" ToRole="StopType" />
+          <NavigationProperty Name="SubLine" Relationship="qwerModel.FK_History_SubLine" FromRole="History" ToRole="SubLine" />
           <NavigationProperty Name="UserInfo" Relationship="qwerModel.FK_History_UserInfo" FromRole="History" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Line">
@@ -260,7 +260,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="UserInfold" Type="Int32" Nullable="false" />
           <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="History" Relationship="qwerModel.FK_History_dbo_SubLine" FromRole="SubLine" ToRole="History" />
+          <NavigationProperty Name="History" Relationship="qwerModel.FK_History_SubLine" FromRole="SubLine" ToRole="History" />
           <NavigationProperty Name="UserInfo" Relationship="qwerModel.FK_SubLine_UserInfo" FromRole="SubLine" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="UserInfo">
@@ -277,18 +277,6 @@
           <NavigationProperty Name="StopType" Relationship="qwerModel.FK_StopType_UserInfo" FromRole="UserInfo" ToRole="StopType" />
           <NavigationProperty Name="SubLine" Relationship="qwerModel.FK_SubLine_UserInfo" FromRole="UserInfo" ToRole="SubLine" />
         </EntityType>
-        <Association Name="FK_History_dbo_SubLine">
-          <End Type="qwerModel.SubLine" Role="SubLine" Multiplicity="1" />
-          <End Type="qwerModel.History" Role="History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubLine">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="History">
-              <PropertyRef Name="SubLineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_History_Line">
           <End Type="qwerModel.Line" Role="Line" Multiplicity="1" />
           <End Type="qwerModel.History" Role="History" Multiplicity="*" />
@@ -310,6 +298,18 @@
             </Principal>
             <Dependent Role="History">
               <PropertyRef Name="StopTypeld" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_SubLine">
+          <End Type="qwerModel.SubLine" Role="SubLine" Multiplicity="1" />
+          <End Type="qwerModel.History" Role="History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubLine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="SubLineId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

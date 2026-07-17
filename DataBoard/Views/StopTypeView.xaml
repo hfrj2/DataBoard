@@ -3,8 +3,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:DataBoard.Views"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
     DataContext="{Binding Source={StaticResource Locator}, Path=StopType}"
@@ -15,16 +16,28 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <DataGrid
-          Grid.Row="0"
-          AutoGenerateColumns="False"
-          Background="Transparent"
-          ItemsSource="{Binding StopTypes}"
-          CanUserAddRows="False">
+            Grid.Row="0"
+            AutoGenerateColumns="False"
+            Background="Transparent"
+            CanUserAddRows="False"
+            ItemsSource="{Binding StopTypes}">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Id}" Header="编号" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="停机类型" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding UserInfo.Name}" Header="添加者" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding InsertDate}" Header="添加日期" />
+                <DataGridTextColumn
+                    Binding="{Binding Id}"
+                    Header="编号"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding Name}"
+                    Header="停机类型"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding UserInfo.Name}"
+                    Header="添加者"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding InsertDate}"
+                    Header="添加日期"
+                    IsReadOnly="True" />
                 <DataGridTemplateColumn Header="操作">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -34,34 +47,30 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock
-                                  Margin="5"
-                                  Style="{StaticResource DataGrid_TextBlock}"
-                                  Text="修改"
-                                  Tag="{Binding}">
-                                  <i:Interaction.Triggers>
-                                      <i:EventTrigger EventName="MouseUp">
-                                          <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:StopTypeView}, Path=DataContext.OpenEditStopTypeWindowCommand}" 
-                                           CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TextBlock},Path=Tag}"/>
-                                      </i:EventTrigger>
-                                  </i:Interaction.Triggers>
+                                    Margin="5"
+                                    Style="{StaticResource DataGrid_TextBlock}"
+                                    Tag="{Binding}"
+                                    Text="修改">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseUp">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:StopTypeView}, Path=DataContext.OpenEditStopTypeWindowCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBlock}, Path=Tag}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
 
                                 </TextBlock>
 
                                 <TextBlock
-                                  Grid.Column="1"
-                                  Margin="5"
-                                  Style="{StaticResource DataGrid_TextBlock}"
-                                  Text="删除"
-                                  Tag="{Binding}">
-                                  <i:Interaction.Triggers>
-                                      <i:EventTrigger EventName="MouseUp">
-                                          <i:InvokeCommandAction 
-                                              Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:StopTypeView}, 
-                                              Path=DataContext.DeleteStopTypeWindowCommand}"
-                                              CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TextBlock},Path=Tag}"/>
-                                          
-                                      </i:EventTrigger>
-                                  </i:Interaction.Triggers>
+                                    Grid.Column="1"
+                                    Margin="5"
+                                    Style="{StaticResource DataGrid_TextBlock}"
+                                    Tag="{Binding}"
+                                    Text="删除">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseUp">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:StopTypeView}, Path=DataContext.DeleteStopTypeWindowCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBlock}, Path=Tag}" />
+
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                 </TextBlock>
                             </Grid>
 
@@ -72,16 +81,16 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel
-          Grid.Row="1"
-          HorizontalAlignment="Right"
-          Orientation="Horizontal">
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
             <Button
-              Margin="15"
-              Command="{Binding OpenAddStopTypeWindowCommand}"
-              Content="添加"
-              FontSize="16"
-              Style="{StaticResource LineView_ButtonStyle}"
-              Tag="&#xf055;" />
+                Margin="15"
+                Command="{Binding OpenAddStopTypeWindowCommand}"
+                Content="添加"
+                FontSize="16"
+                Style="{StaticResource LineView_ButtonStyle}"
+                Tag="&#xf055;" />
         </StackPanel>
     </Grid>
 </UserControl>

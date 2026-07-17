@@ -23,9 +23,9 @@ namespace DataBoard.Model
         public int UserInfold { get; set; }
         public System.DateTime InsertDate { get; set; }
     
-        public virtual SubLine SubLine { get; set; }
         public virtual Line Line { get; set; }
         public virtual StopType StopType { get; set; }
+        public virtual SubLine SubLine { get; set; }
         public virtual UserInfo UserInfo { get; set; }
     }
 }
