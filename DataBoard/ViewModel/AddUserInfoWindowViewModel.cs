@@ -58,31 +58,30 @@ namespace DataBoard.ViewModel
             {
                 return new RelayCommand<Window>((window) =>
                 {
-                  
-                    {
-                        if (string.IsNullOrEmpty(CurrentUser.Name)) return;
-                        if (string.IsNullOrEmpty(CurrentUser.Password)) return;
-                        if (CurrentUser.Name.Length > 32) return;
-                        if (CurrentUser.Password.Length > 32) return;
+                    if (string.IsNullOrEmpty(CurrentUser.Name)) return;
+                    if (string.IsNullOrEmpty(CurrentUser.Password)) return;
+                    if (CurrentUser.Name.Length > 32) return;
+                    if (CurrentUser.Password.Length > 32) return;
 
-                        this.CurrentUser.Role = this.CurrentUser.RoleModel.Id;
-                        this.CurrentUser.InsertDate = DateTime.Now;
-                        IProvider<UserInfo> provider = new UserInfoProvider();
-                        var count = provider.Insert(this.CurrentUser);
-                        if (count > 0)
-                        {
-                            var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
-                            dialog.ShowMessageBox("添加成功", "提示");
-                            window.Close();
-                            this.CurrentUser = new UserInfo();
-                        }
-                        else
-                        {
-                            var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
-                            dialog.ShowMessageBox("添加失败", "提示");
-                        }
+                    var appData = ServiceLocator.Current.GetInstance<AppData>();
+
+                    this.CurrentUser.Role = this.CurrentUser.RoleModel.Id;
+                    this.CurrentUser.InsertDate = DateTime.Now;
+                    IProvider<UserInfo> provider = new UserInfoProvider();
+                    var count = provider.Insert(this.CurrentUser);
+                    if (count > 0)
+                    {
+                        var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
+                        dialog.ShowMessageBox("添加成功", "提示");
+                        window.Close();
+                        this.CurrentUser = new UserInfo();
                     }
-                  
+                    else
+                    {
+                        var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
+                        dialog.ShowMessageBox("添加失败", "提示");
+
+                    }
                 });
             }
         }

@@ -14,8 +14,8 @@ namespace DataBoard
         public AppData()
         {
             roleModels = new List<RoleModel>();
-            roleModels.Add(new RoleModel { Id=0,Name="管理员"});
-            roleModels.Add(new RoleModel { Id = 1, Name = "普通用户" });
+            roleModels.Add(new RoleModel { ID=0,Name="管理员"});
+            roleModels.Add(new RoleModel { ID = 1, Name = "普通用户" });
         }
 
 
