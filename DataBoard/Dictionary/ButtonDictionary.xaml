@@ -143,9 +143,9 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AddLineView_ButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Height" Value="35" />
-        <Setter Property="Width" Value="80" />
+    <Style x:Key="AddUserInfoView_ButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Width" Value="60" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Foreground" Value="#29282D" />
         <Setter Property="Background" Value="White" />
@@ -168,7 +168,7 @@
                             <TextBlock
                                 x:Name="T1"
                                 Grid.Column="0"
-                                Margin="10,0,0,0"
+                                Margin="5,0,0,0"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontFamily="/Fonts/#FontAwesome"

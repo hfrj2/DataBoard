@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 namespace DataBoard.Windows
 {
     /// <summary>
-    /// AddUserWindow.xaml 的交互逻辑
+    /// EditUserInfoWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class AddUserWindow : Window
+    public partial class EditUserInfoWindow : Window
     {
-        public AddUserWindow()
+        public EditUserInfoWindow()
         {
             InitializeComponent();
+        }
+
+        private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Close();
         }
     }
 }

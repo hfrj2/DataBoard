@@ -16,10 +16,10 @@ namespace DataBoard.ViewModel
     {
 
 	//查
-		private readonly LineProvider lineProvider = new LineProvider();
+		private IProvider<Line> provider = new LineProvider();
 		public LineViewModel( )
 		{
-			lines = lineProvider.Select();
+			lines = provider.Select();
 		}
 
 
@@ -39,7 +39,7 @@ namespace DataBoard.ViewModel
 				{
 					var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
 					dialog.ShowMessage("AddLineWindow", "提示");
-                    Lines = lineProvider.Select();
+                    Lines = provider.Select();
                 });
 			}
 		}
@@ -56,7 +56,7 @@ namespace DataBoard.ViewModel
                     vm.Line = line;
                     var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
                     dialog.ShowMessage("EditLineWindow", "提示");
-                    Lines = lineProvider.Select();
+                    Lines = provider.Select();
                 });
             }
         }
@@ -72,11 +72,11 @@ namespace DataBoard.ViewModel
                     var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
                     var Task = dialog.ShowMessage("确定要删除吗？", "提示", "", () =>
                     {
-                        var count = lineProvider.Delete(model);
+                        var count = provider.Delete(model);
                         if (count > 0)
                         { 
                             dialog.ShowMessageBox("删除成功", "提示");
-                            Lines = lineProvider.Select();
+                            Lines = provider.Select();
                         }
                           
                         else

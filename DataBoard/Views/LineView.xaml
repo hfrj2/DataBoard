@@ -19,13 +19,25 @@
             Grid.Row="0"
             AutoGenerateColumns="False"
             Background="Transparent"
-            ItemsSource="{Binding Lines}"
-            CanUserAddRows="False">
+            CanUserAddRows="False"
+            ItemsSource="{Binding Lines}">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Id}" Header="编号" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="生产线" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding UserInfo.Name}" Header="添加者" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding InsertDate}" Header="添加日期" />
+                <DataGridTextColumn
+                    Binding="{Binding Id}"
+                    Header="编号"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding Name}"
+                    Header="生产线"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding UserInfo.Name}"
+                    Header="添加者"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding InsertDate}"
+                    Header="添加日期"
+                    IsReadOnly="True" />
                 <DataGridTemplateColumn Header="操作">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -37,12 +49,11 @@
                                 <TextBlock
                                     Margin="5"
                                     Style="{StaticResource DataGrid_TextBlock}"
-                                    Text="修改"
-                                    Tag="{Binding}">
+                                    Tag="{Binding}"
+                                    Text="修改">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseUp">
-                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:LineView}, Path=DataContext.OpenEditLineWindowCommand}" 
-                                             CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TextBlock},Path=Tag}"/>
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:LineView}, Path=DataContext.OpenEditLineWindowCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBlock}, Path=Tag}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
 
@@ -52,15 +63,12 @@
                                     Grid.Column="1"
                                     Margin="5"
                                     Style="{StaticResource DataGrid_TextBlock}"
-                                    Text="删除"
-                                    Tag="{Binding}">
+                                    Tag="{Binding}"
+                                    Text="删除">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseUp">
-                                            <i:InvokeCommandAction 
-                                                Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:LineView}, 
-                                                Path=DataContext.DeleteLineWindowCommand}"
-                                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TextBlock},Path=Tag}"/>
-                                            
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:LineView}, Path=DataContext.DeleteLineWindowCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBlock}, Path=Tag}" />
+
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </TextBlock>

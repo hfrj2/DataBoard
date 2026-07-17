@@ -99,6 +99,8 @@
     </ApplicationDefinition>
     <Compile Include="AppData.cs" />
     <Compile Include="Converter\HeightToCornerConverter.cs" />
+    <Compile Include="Converter\RoleConverter.cs" />
+    <Compile Include="Entities\RoleModel.cs" />
     <Compile Include="Helpers\TextBoxHelper.cs" />
     <Compile Include="Model\History.cs">
       <DependentUpon>qwer.tt</DependentUpon>
@@ -111,6 +113,7 @@
     <Compile Include="Model\Provider\LineProvider.cs" />
     <Compile Include="Model\Provider\StopTypeProvider.cs" />
     <Compile Include="Model\Provider\SublineProvider.cs" />
+    <Compile Include="Model\Provider\UserInfoProvider.cs" />
     <Compile Include="Model\qwer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -138,11 +141,11 @@
     <Compile Include="ViewModel\AddLineWindowViewModel.cs" />
     <Compile Include="ViewModel\AddStopTypeWindowViewModel.cs" />
     <Compile Include="ViewModel\AddSubLineWindowViewModel.cs" />
-    <Compile Include="ViewModel\AddUserWindowViewModel.cs" />
+    <Compile Include="ViewModel\AddUserInfoWindowViewModel.cs" />
     <Compile Include="ViewModel\EditLineWindowViewModel.cs" />
     <Compile Include="ViewModel\EditStopTypeWindowViewModel.cs" />
     <Compile Include="ViewModel\EditSubLineWindowViewModel.cs" />
-    <Compile Include="ViewModel\EditUserWindowViewModel.cs" />
+    <Compile Include="ViewModel\EditUserInfoWindowViewModel.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\IndexViewModel.cs" />
     <Compile Include="ViewModel\LineViewModel.cs" />
@@ -182,8 +185,8 @@
     <Compile Include="Windows\AddSubLineWindow.xaml.cs">
       <DependentUpon>AddSubLineWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\AddUserWindow.xaml.cs">
-      <DependentUpon>AddUserWindow.xaml</DependentUpon>
+    <Compile Include="Windows\AddUserInfoWindow.xaml.cs">
+      <DependentUpon>AddUserInfoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\EditLineWindow.xaml.cs">
       <DependentUpon>EditLineWindow.xaml</DependentUpon>
@@ -194,8 +197,8 @@
     <Compile Include="Windows\EditSubLineWindow.xaml.cs">
       <DependentUpon>EditSubLineWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\EditUserWindow.xaml.cs">
-      <DependentUpon>EditUserWindow.xaml</DependentUpon>
+    <Compile Include="Windows\EditUserInfoWindow.xaml.cs">
+      <DependentUpon>EditUserInfoWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary\ButtonDictionary.xaml">
       <SubType>Designer</SubType>
@@ -265,7 +268,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\AddUserWindow.xaml">
+    <Page Include="Windows\AddUserInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,7 +284,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EditUserWindow.xaml">
+    <Page Include="Windows\EditUserInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

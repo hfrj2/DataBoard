@@ -22,17 +22,21 @@
         WindowChrome.IsHitTestVisibleInChrome="True">
         <Grid>
 
-            <TextBlock Text="&#xf011;" 
-            MouseUp="TextBlock_MouseUp"
-            WindowChrome.IsHitTestVisibleInChrome="True" 
-            Style="{StaticResource AddLine_TextBlockIcon}"/>
+            <TextBlock
+                MouseUp="TextBlock_MouseUp"
+                Style="{StaticResource AddLine_TextBlockIcon}"
+                Text="&#xf011;"
+                WindowChrome.IsHitTestVisibleInChrome="True" />
             <Grid Margin="30,50,30,50">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <TextBox Height="35" Text="{Binding Line.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"    WindowChrome.IsHitTestVisibleInChrome="True"/>
+                <TextBox
+                    Height="35"
+                    Text="{Binding Line.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
                 <Button
                     Grid.Column="1"
                     Margin="15"
