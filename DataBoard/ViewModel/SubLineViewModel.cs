@@ -16,7 +16,7 @@ namespace DataBoard.ViewModel
     public class SubLineViewModel : ViewModelBase
     {
         //查
-        private IProvider<SubLine> provider = new SublineProvider();
+        private IProvider<SubLine> provider = new SubLineProvider();
         public SubLineViewModel()
         {
             sublines = provider.Select();

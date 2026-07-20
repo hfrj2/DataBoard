@@ -37,7 +37,7 @@ namespace DataBoard.ViewModel
                     var appData = ServiceLocator.Current.GetInstance<AppData>();
                     this.SubLine.UserInfold = appData.CurrentUser.Id;
                     this.SubLine.InsertDate = DateTime.Now;
-                    IProvider<SubLine> provider = new SublineProvider();
+                    IProvider<SubLine> provider = new SubLineProvider();
                     var count = provider.Insert(this.SubLine);
                     if (count > 0)
                     {

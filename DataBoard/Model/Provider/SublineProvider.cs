@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataBoard.Model.Provider
 {
-    internal class SublineProvider : IProvider<SubLine>
+    internal class SubLineProvider : IProvider<SubLine>
     {
         //删除
         public int Delete(SubLine t)
