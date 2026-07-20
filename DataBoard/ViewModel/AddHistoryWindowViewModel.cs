@@ -77,6 +77,11 @@ namespace DataBoard.ViewModel
                     this.History.LineId = this.History.Line.Id;
                     this.History.SubLineId = this.History.SubLine.Id;
                     this.History.StopTypeld = this.History.StopType.Id;
+                    
+                    this.History.Line = null;
+                    this.History.SubLine = null;
+                    this.History.StopType = null;
+                    
 
 
                     var appData = ServiceLocator.Current.GetInstance<AppData>();

@@ -103,14 +103,15 @@
                     Grid.Row="3"
                     Grid.Column="1"
                     MaxHeight="25"
+                    Now="{Binding History.StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     WindowChrome.IsHitTestVisibleInChrome="True" />
                 <controls:DateTimeControl
                     x:Name="EndTimeCtrl"
                     Grid.Row="4"
                     Grid.Column="1"
                     MaxHeight="25"
-                    WindowChrome.IsHitTestVisibleInChrome="True"
-                    />
+                    Now="{Binding History.EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
 
 
                 <TextBlock
