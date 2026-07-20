@@ -20,49 +20,43 @@ namespace DataBoard.Controls
     /// </summary>
     public partial class DateTimeControl : UserControl
     {
+        // 防止 OnNowPropertyChangedCallback 与 ComoBox_SelectionChanged 之间递归调用
+        private bool _isUpdating;
+
         public DateTimeControl()
         {
             InitializeComponent();
-            //
+
             for (int i = 1949; i < 2100; i++)
             {
                 ComoBoxYear.Items.Add(i);
             }
 
-            //
             for (int i = 1; i < 13; i++)
             {
                 ComoBoxMonth.Items.Add(i);
             }
 
-            //
             for (int i = 1; i < 32; i++)
             {
                 ComoBoxDay.Items.Add(i);
             }
 
-            //
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 24; i++)
             {
                 ComoBoxHour.Items.Add(i);
             }
 
-            //
-            for (int i = 0; i < 61; i++)
+            for (int i = 0; i < 60; i++)
             {
                 ComoBoxMinute.Items.Add(i);
             }
 
-            //
-            for (int i = 0; i < 61; i++)
+            for (int i = 0; i < 60; i++)
             {
                 ComoBoxSecond.Items.Add(i);
             }
         }
-
-
-
-
 
         public DateTime Now
         {
@@ -72,59 +66,71 @@ namespace DataBoard.Controls
 
         // Using a DependencyProperty as the backing store for Now.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NowProperty =
-            DependencyProperty.Register(nameof(Now), typeof(DateTime), typeof(DateTimeControl), new PropertyMetadata(DateTime.Now,OnNowPropertyChangedCallback));
+            DependencyProperty.Register(nameof(Now), typeof(DateTime), typeof(DateTimeControl),
+                new PropertyMetadata(DateTime.Now, OnNowPropertyChangedCallback));
 
         private static void OnNowPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (!(d is DateTimeControl dateTimeControl)) return;
-            if (e.NewValue==null) return;
+            if (e.NewValue == null) return;
             if (!(e.NewValue is DateTime dateTime)) return;
+
+            // 防止递归：当 ComoBox_SelectionChanged 正在更新时，跳过本次回调
+            if (dateTimeControl._isUpdating) return;
 
             // SQL datetime only supports 1753-01-01 to 9999-12-31.
             // Default(DateTime) = 0001-01-01 is out of range; treat as unset.
             if (dateTime.Year < 1753)
             {
                 dateTime = DateTime.Now;
+                dateTimeControl._isUpdating = true;
                 dateTimeControl.SetCurrentValue(NowProperty, dateTime);
+                dateTimeControl._isUpdating = false;
             }
 
-            dateTimeControl.ComoBoxYear.Text = dateTime.Year.ToString();
-            dateTimeControl.ComoBoxMonth.Text = dateTime.Month.ToString();
-            dateTimeControl.ComoBoxDay.Text = dateTime.Day.ToString();
-            dateTimeControl.ComoBoxHour.Text = dateTime.Hour.ToString();
-            dateTimeControl.ComoBoxMinute.Text = dateTime.Minute.ToString();
-            dateTimeControl.ComoBoxSecond.Text = dateTime.Second.ToString();
+            dateTimeControl._isUpdating = true;
+            dateTimeControl.ComoBoxYear.SelectedItem = dateTime.Year;
+            dateTimeControl.ComoBoxMonth.SelectedItem = dateTime.Month;
+            dateTimeControl.ComoBoxDay.SelectedItem = dateTime.Day;
+            dateTimeControl.ComoBoxHour.SelectedItem = dateTime.Hour;
+            dateTimeControl.ComoBoxMinute.SelectedItem = dateTime.Minute;
+            dateTimeControl.ComoBoxSecond.SelectedItem = dateTime.Second;
+            dateTimeControl._isUpdating = false;
         }
 
         private void ComoBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var year = ComoBoxYear.Text;
-            var month = ComoBoxMonth.Text;
-            var day = ComoBoxDay.Text;
-            var hour = ComoBoxHour.Text;
-            var minute = ComoBoxMinute.Text;
-            var second = ComoBoxSecond.Text;
+            // 防止递归：当 OnNowPropertyChangedCallback 正在设置控件值时，跳过本次事件
+            if (_isUpdating) return;
 
-            if (int.TryParse(year, out int y) &&
-                int.TryParse(month, out int mo) &&
-                int.TryParse(day, out int d) &&
-                int.TryParse(hour, out int h) &&
-                int.TryParse(minute, out int mi) &&
-                int.TryParse(second, out int s) &&
-                y >= 1753 && mo >= 1 && mo <= 12 && d >= 1 && d <= 31 &&
-                h >= 0 && h <= 23 && mi >= 0 && mi <= 59 && s >= 0 && s <= 59)
+            if (ComoBoxYear.SelectedItem == null || ComoBoxMonth.SelectedItem == null ||
+                ComoBoxDay.SelectedItem == null || ComoBoxHour.SelectedItem == null ||
+                ComoBoxMinute.SelectedItem == null || ComoBoxSecond.SelectedItem == null)
+                return;
+
+            int y = (int)ComoBoxYear.SelectedItem;
+            int mo = (int)ComoBoxMonth.SelectedItem;
+            int d = (int)ComoBoxDay.SelectedItem;
+            int h = (int)ComoBoxHour.SelectedItem;
+            int mi = (int)ComoBoxMinute.SelectedItem;
+            int s = (int)ComoBoxSecond.SelectedItem;
+
+            if (y < 1753 || mo < 1 || mo > 12 || d < 1 || d > 31 ||
+                h < 0 || h > 23 || mi < 0 || mi > 59 || s < 0 || s > 59)
+                return;
+
+            try
             {
-                try
-                {
-                    var result = new DateTime(y, mo, d, h, mi, s);
-                    SetCurrentValue(NowProperty, result);
-                    var be = BindingOperations.GetBindingExpression(this, NowProperty);
-                    be?.UpdateSource();
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                    // Invalid date (e.g., Feb 30) — ignore
-                }
+                var result = new DateTime(y, mo, d, h, mi, s);
+                _isUpdating = true;
+                SetCurrentValue(NowProperty, result);
+                var be = BindingOperations.GetBindingExpression(this, NowProperty);
+                be?.UpdateSource();
+                _isUpdating = false;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                // Invalid date (e.g., Feb 30) — ignore
             }
         }
     }
