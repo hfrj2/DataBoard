@@ -74,6 +74,10 @@ namespace DataBoard.ViewModel
                     if (History.SubLine == null || history.SubLine.Id == 0) return;
                     if (History.StopType == null || history.StopType.Id == 0) return;
                     if (History.StartTime == null || history.EndTime == null) return;
+                    if (History.StartTime >= History.EndTime) return;
+
+                    var t = History.EndTime - History.StartTime;
+                    this.history.Minute = t.Minutes;
                     this.History.LineId = this.History.Line.Id;
                     this.History.SubLineId = this.History.SubLine.Id;
                     this.History.StopTypeld = this.History.StopType.Id;

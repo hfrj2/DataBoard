@@ -15,7 +15,7 @@
                 <ResourceDictionary Source="/Dictionary/TextBoxDictionary.xaml" />
                 <ResourceDictionary Source="/Dictionary/TextBlockDictionary.xaml" />
                 <ResourceDictionary Source="/Dictionary/RadioButton_Dictionary.xaml" />
-                
+                <ResourceDictionary Source="/Dictionary/DataGridStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Converter:HeightToCornerConverter x:Key="HeightToCornerConverter" />

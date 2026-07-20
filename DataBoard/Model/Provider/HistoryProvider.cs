@@ -38,9 +38,9 @@ namespace DataBoard.Model.Provider
             {
                 return db.History
                     .Include("Line")
-                     .Include("StopType")
-                      .Include("SubLine")
-                       .Include("UserInfo")
+                    .Include("StopType")
+                    .Include("SubLine")
+                    .Include("UserInfo")
                     .ToList();
             }
         }

@@ -16,10 +16,13 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <DataGrid
+            HorizontalAlignment="Center"
             Grid.Row="0"
+            BorderBrush="White"
             AutoGenerateColumns="False"
-            Background="Transparent"
+            Background="White"
             CanUserAddRows="False"
+            Height="500"
             ItemsSource="{Binding Historys}">
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -29,17 +32,17 @@
                 
                 <DataGridTextColumn
                     Binding="{Binding Line.Name}"
-                    Header="生产线Id"
+                    Header="生产线"
                     IsReadOnly="True" />
                 
                 <DataGridTextColumn
                     Binding="{Binding SubLine.Name}"
-                    Header="子线Id"
+                    Header="子线"
                     IsReadOnly="True" />
 
                 <DataGridTextColumn
                     Binding="{Binding StopType.Name}"
-                    Header="停止类型Id"
+                    Header="停止类型"
                     IsReadOnly="True" />
                 
                 <DataGridTextColumn
@@ -54,7 +57,7 @@
                 
                 <DataGridTextColumn
                     Binding="{Binding UserInfo.Name}"
-                    Header="用户Id"
+                    Header="用户"
                     IsReadOnly="True" />
                 
                 <DataGridTextColumn
