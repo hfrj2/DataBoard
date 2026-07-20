@@ -75,11 +75,12 @@ namespace DataBoard.Controls
 
         // Using a DependencyProperty as the backing store for Now.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NowProperty =
-            DependencyProperty.Register(nameof(Now), typeof(DateTime), typeof(DateTimeControl), new PropertyMetadata(null,OnNowPropertyChangedCallback));
+            DependencyProperty.Register(nameof(Now), typeof(DateTime), typeof(DateTimeControl), new PropertyMetadata(DateTime.Now,OnNowPropertyChangedCallback));
 
         private static void OnNowPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (!(d is DateTimeControl dateTimeControl)) return;
+            if (e.NewValue==null) return;
             if (!(e.NewValue is DateTime dateTime)) return;
             int year,month, day, hour, minute, second;
             year=dateTime.Year;

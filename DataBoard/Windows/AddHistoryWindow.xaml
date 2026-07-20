@@ -2,11 +2,12 @@
     x:Class="DataBoard.Windows.AddHistoryWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:DataBoard.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:DataBoard.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="添加历史记录"
-    Width="400"
+    Width="520"
     Height="300"
     Background="#282828"
     DataContext="{Binding Source={StaticResource Locator}, Path=AddHistoryWindow}"
@@ -24,7 +25,7 @@
                 Style="{StaticResource AddLine_TextBlockIcon}"
                 Text="&#xf011;"
                 WindowChrome.IsHitTestVisibleInChrome="True" />
-            <Grid Margin="30">
+            <Grid Margin="20 20 30 20">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -98,12 +99,17 @@
                     FontSize="16"
                     Foreground="White"
                     Text="开始时间:   " />
-                <TextBox
+
+
+                <DatePicker
                     Grid.Row="3"
                     Grid.Column="1"
-                    Margin="5"
-                    MaxLength="32"
-                    Text="{Binding CurrentUser.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    MaxHeight="25"
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                <controls:DateTimeControl
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    MaxHeight="25"
                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
 
@@ -114,13 +120,7 @@
                     FontSize="16"
                     Foreground="White"
                     Text="结束时间:   " />
-                <TextBox
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Margin="5"
-                    MaxLength="32"
-                    Text="{Binding CurrentUser.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    WindowChrome.IsHitTestVisibleInChrome="True" />
+
 
 
 

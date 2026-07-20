@@ -60,6 +60,8 @@ namespace DataBoard.Views
                 case "EditStopTypeWindow": new EditStopTypeWindow().ShowDialog(); break;
                 case "AddUserInfoWindow": new AddUserInfoWindow().ShowDialog(); break;
                 case "EditUserInfoWindow": new EditUserInfoWindow().ShowDialog(); break;
+                case "AddHistoryWindow": new AddHistoryWindow().ShowDialog(); break;
+                case "EditHistoryWindow": new EditHistoryWindow().ShowDialog(); break;
 
                 default:
                     break;
