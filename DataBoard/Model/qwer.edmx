@@ -15,6 +15,7 @@
           <Property Name="StopTypeld" Type="int" Nullable="false" />
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="Minute" Type="int" Nullable="false" />
           <Property Name="UserInfold" Type="int" Nullable="false" />
           <Property Name="InsertDate" Type="datetime" Nullable="false" />
         </EntityType>
@@ -229,6 +230,7 @@
           <NavigationProperty Name="StopType" Relationship="qwerModel.FK_History_StopType" FromRole="History" ToRole="StopType" />
           <NavigationProperty Name="SubLine" Relationship="qwerModel.FK_History_SubLine" FromRole="History" ToRole="SubLine" />
           <NavigationProperty Name="UserInfo" Relationship="qwerModel.FK_History_UserInfo" FromRole="History" ToRole="UserInfo" />
+          <Property Name="Minute" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Line">
           <Key>
@@ -370,6 +372,7 @@
           <EntitySetMapping Name="History">
             <EntityTypeMapping TypeName="qwerModel.History">
               <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="Minute" ColumnName="Minute" />
                 <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
                 <ScalarProperty Name="UserInfold" ColumnName="UserInfold" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />

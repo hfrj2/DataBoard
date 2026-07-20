@@ -76,7 +76,7 @@ namespace DataBoard.ViewModel
                     if (History.StartTime == null || history.EndTime == null) return;
                     this.History.LineId = this.History.Line.Id;
                     this.History.SubLineId = this.History.SubLine.Id;
-                    this.History.StopTypeId = this.History.StopType.Id;
+                    this.History.StopTypeld = this.History.StopType.Id;
 
 
                     var appData = ServiceLocator.Current.GetInstance<AppData>();

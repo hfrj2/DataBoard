@@ -24,6 +24,9 @@ namespace DataBoard.Windows
             InitializeComponent();
         }
 
+        public DateTime SelectedStartTime => StartTimeCtrl.Now;
+        public DateTime SelectedEndTime => EndTimeCtrl.Now;
+
         private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Close();

@@ -58,7 +58,6 @@ namespace DataBoard.Controls
             {
                 ComoBoxSecond.Items.Add(i);
             }
-         
         }
 
 
@@ -106,7 +105,9 @@ namespace DataBoard.Controls
             var datetime = $"{year}/{month}/{day}/{hour}/{minute}/{second}";
             if (DateTime.TryParse(datetime,out DateTime result))
             {
-                this.Now = result;
+                SetCurrentValue(NowProperty, result);
+                var be = BindingOperations.GetBindingExpression(this, NowProperty);
+                be?.UpdateSource();
 
             }
         }

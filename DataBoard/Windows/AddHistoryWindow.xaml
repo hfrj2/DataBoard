@@ -99,17 +99,18 @@
 
 
                 <controls:DateTimeControl
+                    x:Name="StartTimeCtrl"
                     Grid.Row="3"
                     Grid.Column="1"
                     MaxHeight="25"
-                    WindowChrome.IsHitTestVisibleInChrome="True" 
-                    Now="{Binding History.StartTime}"/>
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
                 <controls:DateTimeControl
+                    x:Name="EndTimeCtrl"
                     Grid.Row="4"
                     Grid.Column="1"
                     MaxHeight="25"
                     WindowChrome.IsHitTestVisibleInChrome="True"
-                    Now="{Binding StopTypes}"/>
+                    />
 
 
                 <TextBlock
