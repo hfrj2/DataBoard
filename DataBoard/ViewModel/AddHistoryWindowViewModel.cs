@@ -31,7 +31,7 @@ namespace DataBoard.ViewModel
         }
 
 
-   private History history = new History();
+   private History history = new History() { StartTime = DateTime.Now, EndTime = DateTime.Now };
 
         public History History
         {
@@ -95,7 +95,7 @@ namespace DataBoard.ViewModel
                         var dialog = SimpleIoc.Default.GetInstance<IDialogService>();
                         dialog.ShowMessageBox("添加成功", "提示");
                         window.Close();
-                        this.History = new History();
+                        this.History = new History() { StartTime = DateTime.Now, EndTime = DateTime.Now };
                     }
                     else
                     {

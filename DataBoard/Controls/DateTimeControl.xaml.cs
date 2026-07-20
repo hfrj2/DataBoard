@@ -79,19 +79,21 @@ namespace DataBoard.Controls
             if (!(d is DateTimeControl dateTimeControl)) return;
             if (e.NewValue==null) return;
             if (!(e.NewValue is DateTime dateTime)) return;
-            int year,month, day, hour, minute, second;
-            year=dateTime.Year;
-            month=dateTime.Month;
-            day=dateTime.Day; 
-            hour=dateTime.Hour;
-            minute=dateTime.Minute; 
-            second=dateTime.Second;
-            dateTimeControl.ComoBoxYear.Text=year.ToString();
-            dateTimeControl.ComoBoxMonth.Text = month.ToString();
-            dateTimeControl.ComoBoxDay.Text = day.ToString();
-            dateTimeControl.ComoBoxHour.Text = hour.ToString();
-            dateTimeControl.ComoBoxMinute.Text = minute.ToString();
-            dateTimeControl.ComoBoxSecond.Text = second.ToString();
+
+            // SQL datetime only supports 1753-01-01 to 9999-12-31.
+            // Default(DateTime) = 0001-01-01 is out of range; treat as unset.
+            if (dateTime.Year < 1753)
+            {
+                dateTime = DateTime.Now;
+                dateTimeControl.SetCurrentValue(NowProperty, dateTime);
+            }
+
+            dateTimeControl.ComoBoxYear.Text = dateTime.Year.ToString();
+            dateTimeControl.ComoBoxMonth.Text = dateTime.Month.ToString();
+            dateTimeControl.ComoBoxDay.Text = dateTime.Day.ToString();
+            dateTimeControl.ComoBoxHour.Text = dateTime.Hour.ToString();
+            dateTimeControl.ComoBoxMinute.Text = dateTime.Minute.ToString();
+            dateTimeControl.ComoBoxSecond.Text = dateTime.Second.ToString();
         }
 
         private void ComoBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -102,13 +104,27 @@ namespace DataBoard.Controls
             var hour = ComoBoxHour.Text;
             var minute = ComoBoxMinute.Text;
             var second = ComoBoxSecond.Text;
-            var datetime = $"{year}/{month}/{day}/{hour}/{minute}/{second}";
-            if (DateTime.TryParse(datetime,out DateTime result))
-            {
-                SetCurrentValue(NowProperty, result);
-                var be = BindingOperations.GetBindingExpression(this, NowProperty);
-                be?.UpdateSource();
 
+            if (int.TryParse(year, out int y) &&
+                int.TryParse(month, out int mo) &&
+                int.TryParse(day, out int d) &&
+                int.TryParse(hour, out int h) &&
+                int.TryParse(minute, out int mi) &&
+                int.TryParse(second, out int s) &&
+                y >= 1753 && mo >= 1 && mo <= 12 && d >= 1 && d <= 31 &&
+                h >= 0 && h <= 23 && mi >= 0 && mi <= 59 && s >= 0 && s <= 59)
+            {
+                try
+                {
+                    var result = new DateTime(y, mo, d, h, mi, s);
+                    SetCurrentValue(NowProperty, result);
+                    var be = BindingOperations.GetBindingExpression(this, NowProperty);
+                    be?.UpdateSource();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    // Invalid date (e.g., Feb 30) — ignore
+                }
             }
         }
     }
