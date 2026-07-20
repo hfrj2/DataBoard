@@ -9,7 +9,7 @@
     Width="400"
     Height="300"
     Background="#282828"
-    DataContext="{Binding Source={StaticResource Locator}, Path=AddUserInfoWindow}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=AddHistoryWindow}"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -106,6 +106,7 @@
                     Text="{Binding CurrentUser.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
+
                 <TextBlock
                     Grid.Row="4"
                     Grid.Column="0"
@@ -129,7 +130,7 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Command="{Binding AddUserInfoCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AddUserInfoWindow}}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AddHistoryWindow}}"
                     Content="添加"
                     FontSize="14"
                     Style="{StaticResource AddUserInfoView_ButtonStyle}"

@@ -5,23 +5,58 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:DataBoard.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
     Background="#282828"
     mc:Ignorable="d">
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="年" Foreground="White" FontSize="16"/>
-            <ComboBox x:Name="ComoBoxYear" Width="auto" SelectionChanged="ComoBox_SelectionChanged" />
-            <TextBlock Text="月" Foreground="White" FontSize="16" />
-            <ComboBox x:Name="ComoBoxMonth" Width="auto"  SelectionChanged="ComoBox_SelectionChanged"  />
-            <TextBlock Text="日" Foreground="White" FontSize="16"/>
-            <ComboBox x:Name="ComoBoxDay" Width="auto"   SelectionChanged="ComoBox_SelectionChanged" />
-            <TextBlock Text="时" Foreground="White" FontSize="16"/>
-            <ComboBox x:Name="ComoBoxHour" Width="auto"   SelectionChanged="ComoBox_SelectionChanged" />
-            <TextBlock Text="分" Foreground="White" FontSize="16"/>
-            <ComboBox x:Name="ComoBoxMinute" Width="auto"  SelectionChanged="ComoBox_SelectionChanged"  />
-            <TextBlock Text="秒" Foreground="White" FontSize="16"/>
-            <ComboBox x:Name="ComoBoxSecond" Width="auto"  SelectionChanged="ComoBox_SelectionChanged"  />
+            <TextBlock
+                FontSize="16"
+                Foreground="White"
+                Text="年" />
+            <ComboBox
+                x:Name="ComoBoxYear"
+                Width="auto"
+                SelectionChanged="ComoBox_SelectionChanged" />
+            <TextBlock
+                FontSize="16"
+                Foreground="White"
+                Text="月" />
+            <ComboBox
+                x:Name="ComoBoxMonth"
+                Width="auto"
+                SelectionChanged="ComoBox_SelectionChanged" />
+            <TextBlock
+                FontSize="16"
+                Foreground="White"
+                Text="日" />
+            <ComboBox
+                x:Name="ComoBoxDay"
+                Width="auto"
+                SelectionChanged="ComoBox_SelectionChanged" />
+            <TextBlock
+                FontSize="16"
+                Foreground="White"
+                Text="时" />
+            <ComboBox
+                x:Name="ComoBoxHour"
+                Width="auto"
+                SelectionChanged="ComoBox_SelectionChanged" />
+            <TextBlock
+                FontSize="16"
+                Foreground="White"
+                Text="分" />
+            <ComboBox
+                x:Name="ComoBoxMinute"
+                Width="auto"
+                SelectionChanged="ComoBox_SelectionChanged" />
+            <TextBlock
+                FontSize="16"
+                Foreground="White"
+                Text="秒" />
+            <ComboBox
+                x:Name="ComoBoxSecond"
+                Width="auto"
+                SelectionChanged="ComoBox_SelectionChanged" />
 
 
         </StackPanel>

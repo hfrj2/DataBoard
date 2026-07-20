@@ -65,9 +65,51 @@ namespace DataBoard.Controls
 
 
 
+
+
+        public DateTime Now
+        {
+            get { return (DateTime)GetValue(NowProperty); }
+            set { SetValue(NowProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Now.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty NowProperty =
+            DependencyProperty.Register(nameof(Now), typeof(DateTime), typeof(DateTimeControl), new PropertyMetadata(null,OnNowPropertyChangedCallback));
+
+        private static void OnNowPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (!(d is DateTimeControl dateTimeControl)) return;
+            if (!(e.NewValue is DateTime dateTime)) return;
+            int year,month, day, hour, minute, second;
+            year=dateTime.Year;
+            month=dateTime.Month;
+            day=dateTime.Day; 
+            hour=dateTime.Hour;
+            minute=dateTime.Minute; 
+            second=dateTime.Second;
+            dateTimeControl.ComoBoxYear.Text=year.ToString();
+            dateTimeControl.ComoBoxMonth.Text = month.ToString();
+            dateTimeControl.ComoBoxDay.Text = day.ToString();
+            dateTimeControl.ComoBoxHour.Text = hour.ToString();
+            dateTimeControl.ComoBoxMinute.Text = minute.ToString();
+            dateTimeControl.ComoBoxSecond.Text = second.ToString();
+        }
+
         private void ComoBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var year = ComoBoxYear.Text;
+            var month = ComoBoxMonth.Text;
+            var day = ComoBoxDay.Text;
+            var hour = ComoBoxHour.Text;
+            var minute = ComoBoxMinute.Text;
+            var second = ComoBoxSecond.Text;
+            var datetime = $"{year}/{month}/{day}/{hour}/{minute}/{second}";
+            if (DateTime.TryParse(datetime,out DateTime result))
+            {
+                this.Now = result;
 
+            }
         }
     }
 }
