@@ -23,44 +23,42 @@ namespace DataBoard.Controls
         public DateTimeControl()
         {
             InitializeComponent();
-            Loaded += (s, e) =>
+            //
+            for (int i = 1949; i < 2100; i++)
             {
-                //
-                for (int i = 1949; i < 2100; i++)
-                {
-                    ComoBoxYear.Items.Add(i);
-                }
+                ComoBoxYear.Items.Add(i);
+            }
 
-                //
-                for (int i = 1; i < 13; i++)
-                {
-                    ComoBoxMonth.Items.Add(i);
-                }
+            //
+            for (int i = 1; i < 13; i++)
+            {
+                ComoBoxMonth.Items.Add(i);
+            }
 
-                //
-                for (int i = 1; i < 32; i++)
-                {
-                    ComoBoxDay.Items.Add(i);
-                }
+            //
+            for (int i = 1; i < 32; i++)
+            {
+                ComoBoxDay.Items.Add(i);
+            }
 
-                //
-                for (int i = 0; i < 25; i++)
-                {
-                    ComoBoxHour.Items.Add(i);
-                }
+            //
+            for (int i = 0; i < 25; i++)
+            {
+                ComoBoxHour.Items.Add(i);
+            }
 
-                //
-                for (int i = 0; i < 61; i++)
-                {
-                    ComoBoxMinute.Items.Add(i);
-                }
+            //
+            for (int i = 0; i < 61; i++)
+            {
+                ComoBoxMinute.Items.Add(i);
+            }
 
-                //
-                for (int i = 0; i < 61; i++)
-                {
-                    ComoBoxSecond.Items.Add(i);
-                }
-            };
+            //
+            for (int i = 0; i < 61; i++)
+            {
+                ComoBoxSecond.Items.Add(i);
+            }
+         
         }
 
 

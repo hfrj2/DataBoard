@@ -25,7 +25,7 @@
                 Style="{StaticResource AddLine_TextBlockIcon}"
                 Text="&#xf011;"
                 WindowChrome.IsHitTestVisibleInChrome="True" />
-            <Grid Margin="20 20 30 20">
+            <Grid Margin="20,20,30,20">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -54,9 +54,8 @@
                     Grid.Column="1"
                     Margin="5"
                     DisplayMemberPath="Name"
-                    ItemsSource="{Binding AppData.RoleModels}"
-                    SelectedItem="{Binding CurrentUser.RoleModel}"
-                    Text="{Binding CurrentUser.Role}"
+                    ItemsSource="{Binding Lines}"
+                    SelectedItem="{Binding History.Line}"
                     WindowChrome.IsHitTestVisibleInChrome="True" />
                 <TextBlock
                     Grid.Row="1"
@@ -70,9 +69,8 @@
                     Grid.Column="1"
                     Margin="5"
                     DisplayMemberPath="Name"
-                    ItemsSource="{Binding AppData.RoleModels}"
-                    SelectedItem="{Binding CurrentUser.RoleModel}"
-                    Text="{Binding CurrentUser.Role}"
+                    ItemsSource="{Binding SubLines}"
+                    SelectedItem="{Binding History.SubLine}"
                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
                 <TextBlock
@@ -87,9 +85,8 @@
                     Grid.Column="1"
                     Margin="5"
                     DisplayMemberPath="Name"
-                    ItemsSource="{Binding AppData.RoleModels}"
-                    SelectedItem="{Binding CurrentUser.RoleModel}"
-                    Text="{Binding CurrentUser.Role}"
+                    ItemsSource="{Binding StopTypes}"
+                    SelectedItem="{Binding History.StopType}"
                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
                 <TextBlock
@@ -101,16 +98,18 @@
                     Text="开始时间:   " />
 
 
-                <DatePicker
+                <controls:DateTimeControl
                     Grid.Row="3"
                     Grid.Column="1"
                     MaxHeight="25"
-                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                    WindowChrome.IsHitTestVisibleInChrome="True" 
+                    Now="{Binding History.StartTime}"/>
                 <controls:DateTimeControl
                     Grid.Row="4"
                     Grid.Column="1"
                     MaxHeight="25"
-                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                    WindowChrome.IsHitTestVisibleInChrome="True"
+                    Now="{Binding StopTypes}"/>
 
 
                 <TextBlock
@@ -129,7 +128,7 @@
                     Grid.Row="5"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Command="{Binding AddUserInfoCommand}"
+                    Command="{Binding AddHistoryCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AddHistoryWindow}}"
                     Content="添加"
                     FontSize="14"

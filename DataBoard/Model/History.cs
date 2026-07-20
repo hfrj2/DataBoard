@@ -17,7 +17,7 @@ namespace DataBoard.Model
         public int Id { get; set; }
         public int LineId { get; set; }
         public int SubLineId { get; set; }
-        public int StopTypeld { get; set; }
+        public int StopTypeId { get; set; }
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
         public int UserInfold { get; set; }
