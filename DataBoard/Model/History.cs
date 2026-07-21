@@ -20,9 +20,9 @@ namespace DataBoard.Model
         public int StopTypeld { get; set; }
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
+        public double Minutes { get; set; }
         public int UserInfold { get; set; }
         public System.DateTime InsertDate { get; set; }
-        public int Minute { get; set; }
     
         public virtual Line Line { get; set; }
         public virtual StopType StopType { get; set; }

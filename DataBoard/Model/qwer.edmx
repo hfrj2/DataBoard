@@ -15,7 +15,7 @@
           <Property Name="StopTypeld" Type="int" Nullable="false" />
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" Nullable="false" />
-          <Property Name="Minute" Type="int" Nullable="false" />
+          <Property Name="Minutes" Type="float" Nullable="false" />
           <Property Name="UserInfold" Type="int" Nullable="false" />
           <Property Name="InsertDate" Type="datetime" Nullable="false" />
         </EntityType>
@@ -224,13 +224,13 @@
           <Property Name="StopTypeld" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Minutes" Type="Double" Nullable="false" />
           <Property Name="UserInfold" Type="Int32" Nullable="false" />
           <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Line" Relationship="qwerModel.FK_History_Line" FromRole="History" ToRole="Line" />
           <NavigationProperty Name="StopType" Relationship="qwerModel.FK_History_StopType" FromRole="History" ToRole="StopType" />
           <NavigationProperty Name="SubLine" Relationship="qwerModel.FK_History_SubLine" FromRole="History" ToRole="SubLine" />
           <NavigationProperty Name="UserInfo" Relationship="qwerModel.FK_History_UserInfo" FromRole="History" ToRole="UserInfo" />
-          <Property Name="Minute" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Line">
           <Key>
@@ -372,9 +372,9 @@
           <EntitySetMapping Name="History">
             <EntityTypeMapping TypeName="qwerModel.History">
               <MappingFragment StoreEntitySet="History">
-                <ScalarProperty Name="Minute" ColumnName="Minute" />
                 <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
                 <ScalarProperty Name="UserInfold" ColumnName="UserInfold" />
+                <ScalarProperty Name="Minutes" ColumnName="Minutes" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="StopTypeld" ColumnName="StopTypeld" />

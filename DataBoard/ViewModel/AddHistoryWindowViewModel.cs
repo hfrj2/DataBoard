@@ -77,7 +77,7 @@ namespace DataBoard.ViewModel
                     if (History.StartTime >= History.EndTime) return;
 
                     var t = History.EndTime - History.StartTime;
-                    this.history.Minute = t.Minutes;
+                    this.history.Minutes = t.TotalMinutes;
                     this.History.LineId = this.History.Line.Id;
                     this.History.SubLineId = this.History.SubLine.Id;
                     this.History.StopTypeld = this.History.StopType.Id;

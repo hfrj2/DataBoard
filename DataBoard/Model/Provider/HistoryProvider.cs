@@ -50,7 +50,15 @@ namespace DataBoard.Model.Provider
         {
             using (qwerEntities1 db = new qwerEntities1())
             {
-                db.Entry(t).State = System.Data.Entity.EntityState.Modified;
+                var model = db.History.FirstOrDefault(item=>item.Id==t.Id);
+                model.LineId=t.LineId;
+                model.StopTypeld = t.StopTypeld;
+                model.SubLineId=t.SubLineId;
+                model.UserInfold = t.UserInfold;
+                model.StartTime = t.StartTime;
+                model.EndTime= t.EndTime;
+                model.Minutes = t.Minutes;
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 return db.SaveChanges();
             }
         }

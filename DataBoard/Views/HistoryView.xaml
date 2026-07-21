@@ -16,25 +16,24 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <DataGrid
-            HorizontalAlignment="Center"
             Grid.Row="0"
-            BorderBrush="White"
+            Height="500"
             AutoGenerateColumns="False"
             Background="White"
+            BorderBrush="White"
             CanUserAddRows="False"
-            Height="500"
             ItemsSource="{Binding Historys}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Binding="{Binding Id}"
                     Header="编号"
                     IsReadOnly="True" />
-                
+
                 <DataGridTextColumn
                     Binding="{Binding Line.Name}"
                     Header="生产线"
                     IsReadOnly="True" />
-                
+
                 <DataGridTextColumn
                     Binding="{Binding SubLine.Name}"
                     Header="子线"
@@ -44,27 +43,33 @@
                     Binding="{Binding StopType.Name}"
                     Header="停止类型"
                     IsReadOnly="True" />
-                
+
                 <DataGridTextColumn
                     Binding="{Binding StartTime}"
                     Header="开始时间"
                     IsReadOnly="True" />
-                
+
                 <DataGridTextColumn
                     Binding="{Binding EndTime}"
                     Header="结束时间"
                     IsReadOnly="True" />
-                
+
+                <DataGridTextColumn
+                    Binding="{Binding Minutes}"
+                    Header="停机时长"
+                    IsReadOnly="True" />
+
+
                 <DataGridTextColumn
                     Binding="{Binding UserInfo.Name}"
                     Header="用户"
                     IsReadOnly="True" />
-                
+
                 <DataGridTextColumn
                     Binding="{Binding InsertDate}"
                     Header="插入时间"
-                    IsReadOnly="True"/>
-                
+                    IsReadOnly="True" />
+
                 <DataGridTemplateColumn Header="操作">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c621a27e258445298661ca8ad66186f5" Name="Diagram1" ZoomLevel="158">
-        <EntityTypeShape EntityType="qwerModel.History" Width="1.5" PointX="5.25" PointY="7.625" />
-        <EntityTypeShape EntityType="qwerModel.Line" Width="1.5" PointX="3" PointY="10.25" />
-        <EntityTypeShape EntityType="qwerModel.StopType" Width="1.5" PointX="3" PointY="3.375" />
-        <EntityTypeShape EntityType="qwerModel.SubLine" Width="1.5" PointX="3" PointY="13.125" />
-        <EntityTypeShape EntityType="qwerModel.UserInfo" Width="1.5" PointX="0.75" PointY="6" />
+      <Diagram DiagramId="c621a27e258445298661ca8ad66186f5" Name="Diagram1" ZoomLevel="119">
+        <EntityTypeShape EntityType="qwerModel.History" Width="1.5" PointX="5.25" PointY="7.75" />
+        <EntityTypeShape EntityType="qwerModel.Line" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="qwerModel.StopType" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="qwerModel.SubLine" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="qwerModel.UserInfo" Width="1.5" PointX="0.75" PointY="6.125" />
         <AssociationConnector Association="qwerModel.FK_History_Line" />
         <AssociationConnector Association="qwerModel.FK_History_StopType" />
         <AssociationConnector Association="qwerModel.FK_History_SubLine" />
