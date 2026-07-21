@@ -118,8 +118,5 @@ namespace DataBoard.ViewModel
                 });
             }
         }
-
-
-
     }
 }

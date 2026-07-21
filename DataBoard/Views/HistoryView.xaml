@@ -17,9 +17,8 @@
         </Grid.RowDefinitions>
         <DataGrid
             Grid.Row="0"
-            Height="500"
             AutoGenerateColumns="False"
-            Background="White"
+            Background="Transparent"
             BorderBrush="White"
             CanUserAddRows="False"
             ItemsSource="{Binding Historys}">

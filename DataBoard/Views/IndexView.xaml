@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:DataBoard.Views"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -13,10 +14,100 @@
 
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
         <TextBlock
-            FontSize="100"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
             Foreground="White"
-            Text="index" />
+            Text="生产线月份折线报表(单位:分钟)" />
+        <!--  系列集合  -->
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="10">
+            <lvc:CartesianChart
+                AxisX="{Binding LineAxis}"
+                LegendLocation="Left"
+                Series="{Binding LinesSeries}" />
+        </Grid>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
+            Foreground="White"
+            Text="停机类型饼图报表(单位:分钟)" />
+        <!--  系列集合  -->
+        <lvc:PieChart
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="10"
+            DataTooltip="{x:Null}"
+            Hoverable="True"
+            InnerRadius="60"
+            LegendLocation="Right"
+            Series="{Binding PieStopTypeSeries}">
+            <lvc:PieChart.ChartLegend>
+                <lvc:DefaultLegend Foreground="White" />
+            </lvc:PieChart.ChartLegend>
+        </lvc:PieChart>
+
+
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
+            Foreground="White"
+            Text="生产子线停机类型柱状报表(单位:分钟)" />
+        <!--  系列集合  -->
+        <lvc:CartesianChart
+            Grid.Row="3"
+            Grid.Column="0"
+            Margin="10"
+            LegendLocation="Left" Series="{Binding RowSubLineSeries}">
+     
+
+        </lvc:CartesianChart>
+
+
+
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
+            Foreground="White"
+            Text="停机类型饼图报表(单位:分钟)" />
+        <!--  系列集合  -->
+        <lvc:PieChart
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="10"
+            DataTooltip="{x:Null}"
+            Hoverable="True"
+            InnerRadius="60"
+            LegendLocation="Left"
+            Series="{Binding PieSeries}">
+            <lvc:PieChart.ChartLegend>
+                <lvc:DefaultLegend Foreground="White" />
+            </lvc:PieChart.ChartLegend>
+        </lvc:PieChart>
+
+
 
     </Grid>
 </UserControl>

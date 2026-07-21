@@ -25,11 +25,11 @@ namespace DataBoard.ViewModel
         }
 
 
-        private List<History> historys;
+        private List<History> histories;
         public List<History> Historys
         {
-            get { return historys; }
-            set { historys = value; RaisePropertyChanged(); }
+            get { return histories; }
+            set { histories = value; RaisePropertyChanged(); }
         }
 
         //添加生产线

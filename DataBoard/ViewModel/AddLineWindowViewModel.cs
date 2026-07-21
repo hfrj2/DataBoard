@@ -16,6 +16,8 @@ namespace DataBoard.ViewModel
 {
     public class AddLineWindowViewModel:ViewModelBase
     {
+        private IProvider<Line> lineProvider = new LineProvider();
+
         private Line line = new Line();
 
         public Line Line
