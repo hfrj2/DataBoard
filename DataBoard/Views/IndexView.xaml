@@ -78,7 +78,9 @@
             Grid.Row="3"
             Grid.Column="0"
             Margin="10"
-            LegendLocation="Left" Series="{Binding RowSubLineSeries}">
+            AxisX="{Binding RowSubLineAxis}"
+            LegendLocation="Left" 
+            Series="{Binding RowSubLineSeries}">
      
 
         </lvc:CartesianChart>

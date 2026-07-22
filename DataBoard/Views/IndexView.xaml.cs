@@ -39,7 +39,9 @@ namespace DataBoard.Views
         public IndexView()
         {
             InitializeComponent();
-            vm=DataContext as IndexViewModel;
+            vm = DataContext as IndexViewModel;
+            DataContext = vm;
+           
             Loaded += (s, e) =>
             {
                 var histories = historyProvider.Select();
@@ -113,7 +115,14 @@ namespace DataBoard.Views
                 vm.RowSubLineSeries.Clear();
                 vm.RowSubLineAxis.Clear();
 
-                    foreach (var line in lines)
+                Axis rowAxis = new Axis();
+                axis.ShowLabels = true;
+                axis.Separator = new LiveCharts.Wpf.Separator() { Step = 1 };
+                axis.Labels = new List<string>();
+
+
+
+                foreach (var line in lines)
                     {
                         var values = new ChartValues<double>();
                         foreach (var subline in sublines)
@@ -122,7 +131,7 @@ namespace DataBoard.Views
                             var sumMinutes = list.Sum(item => item.Minutes);
                         values.Add(sumMinutes);
                     }
-                    var rowSeries = new RowSeries
+                    var rowSeries = new ColumnSeries
                     {
                         Title = line.Name,
                         Values = values,
@@ -130,31 +139,32 @@ namespace DataBoard.Views
                         DataLabels = true,
                     };
                     vm.RowSubLineSeries.Add(rowSeries);
-
+                    rowAxis.Labels.Add(line.Name);
                 }
-                    foreach (var subline in sublines)
-                    {
-                    RowSeries rowSeries = new RowSeries();
-                    rowSeries.Values = new ChartValues<double>();
-                    rowSeries.Title = subline.Name;
 
-                    var list = tempHistories.FindAll(t => t.SubLineId == subline.Id);
-                    var sumMinutes = list.Sum(item => item.Minutes);
-                    rowSeries.Values.Add(sumMinutes);
-                    rowSeries.DataLabels = true;
+                vm.RowSubLineAxis.Add(rowAxis);
+                /*
+                foreach (var subline in sublines)
+                {
+                RowSeries rowSeries = new RowSeries();
+                rowSeries.Values = new ChartValues<double>();
+                rowSeries.Title = subline.Name;
 
-                    vm.RowSubLineSeries.Add(rowSeries);
+                var list = tempHistories.FindAll(t => t.SubLineId == subline.Id);
+                var sumMinutes = list.Sum(item => item.Minutes);
+                rowSeries.Values.Add(sumMinutes);
+                rowSeries.DataLabels = true;
 
-                    Axis rowAxis = new Axis();
-                    axis.ShowLabels = true;
-                    axis.Labels = new List<string>();
-                    axis.Separator = new LiveCharts.Wpf.Separator() { Step = 1 };
+                vm.RowSubLineSeries.Add(rowSeries);
 
-                    vm.RowSubLineAxis.Add(rowAxis);
+                Axis rowAxis = new Axis();
+                axis.ShowLabels = true;
+                axis.Labels = new List<string>();
+                axis.Separator = new LiveCharts.Wpf.Separator() { Step = 1 };
 
-
-
-                    }
+                vm.RowSubLineAxis.Add(rowAxis);
+                }
+                */
 
 
 
