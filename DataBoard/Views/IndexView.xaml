@@ -40,7 +40,12 @@
             <lvc:CartesianChart
                 AxisX="{Binding LineAxis}"
                 LegendLocation="Left"
-                Series="{Binding LinesSeries}" />
+                Series="{Binding LinesSeries}" 
+                Foreground="White">
+                <lvc:CartesianChart.ChartLegend>
+                    <lvc:DefaultLegend Foreground="White" />
+                </lvc:CartesianChart.ChartLegend>
+            </lvc:CartesianChart>
         </Grid>
 
         <TextBlock
@@ -55,7 +60,6 @@
             Grid.Row="1"
             Grid.Column="1"
             Margin="10"
-            DataTooltip="{x:Null}"
             Hoverable="True"
             InnerRadius="60"
             LegendLocation="Right"
@@ -79,10 +83,12 @@
             Grid.Column="0"
             Margin="10"
             AxisX="{Binding RowSubLineAxis}"
-            LegendLocation="Left" 
-            Series="{Binding RowSubLineSeries}">
-     
-
+            Foreground="White"
+            LegendLocation="Left"
+            Series="{Binding RowSubLineSeries}" >
+            <lvc:CartesianChart.ChartLegend>
+                <lvc:DefaultLegend Foreground="White" />
+            </lvc:CartesianChart.ChartLegend>
         </lvc:CartesianChart>
 
 
@@ -99,11 +105,10 @@
             Grid.Row="3"
             Grid.Column="1"
             Margin="10"
-            DataTooltip="{x:Null}"
             Hoverable="True"
             InnerRadius="60"
-            LegendLocation="Left"
-            Series="{Binding PieSeries}">
+            LegendLocation="Right"
+            Series="{Binding PieSubLineSeries}">
             <lvc:PieChart.ChartLegend>
                 <lvc:DefaultLegend Foreground="White" />
             </lvc:PieChart.ChartLegend>

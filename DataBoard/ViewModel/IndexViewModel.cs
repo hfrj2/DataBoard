@@ -27,5 +27,10 @@ namespace DataBoard.ViewModel
 
         public SeriesCollection RowSubLineSeries { get; set; } = new SeriesCollection();
         public AxesCollection RowSubLineAxis { get; set; } = new AxesCollection();
+
+        //子线饼图
+        public SeriesCollection PieSubLineSeries { get; set; } = new SeriesCollection();
+
+
     }
 }

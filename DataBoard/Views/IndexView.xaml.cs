@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Windows.Forms.LinkLabel;
+using Separator = LiveCharts.Wpf.Separator;
 
 
 
@@ -111,21 +112,77 @@ namespace DataBoard.Views
 
                 }
 
+
+
+                /*
+                //3.子线 - 横轴显示生产线名称，柱形图显示每个生产线上每次停机的时间
+                vm.RowSubLineSeries.Clear();
+                vm.RowSubLineAxis.Clear();
+
+                // 创建横轴（显示生产线名称）
+                Axis xAxis = new Axis();
+                xAxis.ShowLabels = true;
+                xAxis.Separator = new LiveCharts.Wpf.Separator() { Step = 1 };
+                xAxis.Labels = new List<string>();
+
+                // 遍历所有生产线
+                foreach (var line in lines)
+                {
+                    // 获取该生产线的所有停机记录（不分子线，所有停机事件）
+                    var lineHistories = tempHistories.FindAll(t => t.LineId == line.Id);
+
+                    // 为该生产线创建停机时间集合
+                    var values = new ChartValues<double>();
+
+                    if (lineHistories.Any())
+                    {
+                        // 按时间排序
+                        var sortedHistories = lineHistories.OrderBy(h => h.StartTime).ToList();
+
+                        // 添加该生产线的所有停机时间（每次停机一个柱子）
+                        foreach (var history in sortedHistories)
+                        {
+                            values.Add(history.Minutes);
+                        }
+
+                        // 创建柱状图系列 - 标题为生产线名称
+                        var columnSeries = new ColumnSeries
+                        {
+                            Title = line.Name,
+                            Values = values,
+                            LabelPoint = point => $"{point.Y:F0}min",
+                            DataLabels = true,
+                        };
+
+                        vm.RowSubLineSeries.Add(columnSeries);
+
+                        // 横轴只添加一次生产线名称
+                        xAxis.Labels.Add(line.Name);
+                    }
+                }
+
+                vm.RowSubLineAxis.Add(xAxis);
+                */
+
+
+
+               
+
                 //3.子线
                 vm.RowSubLineSeries.Clear();
                 vm.RowSubLineAxis.Clear();
 
                 Axis rowAxis = new Axis();
-                axis.ShowLabels = true;
-                axis.Separator = new LiveCharts.Wpf.Separator() { Step = 1 };
-                axis.Labels = new List<string>();
+                rowAxis.ShowLabels = true;
+                rowAxis.Separator = new LiveCharts.Wpf.Separator() { Step = 1 };
+                rowAxis.Labels = new List<string>();
 
 
 
                 foreach (var line in lines)
                     {
                         var values = new ChartValues<double>();
-                        foreach (var subline in sublines)
+                        foreach (  var subline in sublines)
                         {
                             var list = tempHistories.FindAll(t => t.SubLineId == subline.Id&& t.LineId == line.Id);
                             var sumMinutes = list.Sum(item => item.Minutes);
@@ -135,7 +192,7 @@ namespace DataBoard.Views
                     {
                         Title = line.Name,
                         Values = values,
-                        LabelPoint = point => point.Y + "min",
+                        LabelPoint = point => $"{point.Y}min",
                         DataLabels = true,
                     };
                     vm.RowSubLineSeries.Add(rowSeries);
@@ -143,31 +200,29 @@ namespace DataBoard.Views
                 }
 
                 vm.RowSubLineAxis.Add(rowAxis);
-                /*
+
+
+              
+
+                //4.子线【饼图】
+                vm.PieSubLineSeries.Clear();
+                // vm.PieStopTypeAxis.Clear();
                 foreach (var subline in sublines)
                 {
-                RowSeries rowSeries = new RowSeries();
-                rowSeries.Values = new ChartValues<double>();
-                rowSeries.Title = subline.Name;
+                    PieSeries pieSeries = new PieSeries();
+                    pieSeries.Values = new ChartValues<double>();
+                    pieSeries.Title = subline.Name;
 
-                var list = tempHistories.FindAll(t => t.SubLineId == subline.Id);
-                var sumMinutes = list.Sum(item => item.Minutes);
-                rowSeries.Values.Add(sumMinutes);
-                rowSeries.DataLabels = true;
+                    var list = tempHistories.FindAll(t => t.SubLineId== subline.Id);
+                    var sumMinutes = list.Sum(item => item.Minutes);
+                    pieSeries.Values.Add(sumMinutes);
+                    pieSeries.DataLabels = true;
 
-                vm.RowSubLineSeries.Add(rowSeries);
+                    vm.PieSubLineSeries.Add(pieSeries);
+                    //vm.PieStopTypeAxis.Add();
 
-                Axis rowAxis = new Axis();
-                axis.ShowLabels = true;
-                axis.Labels = new List<string>();
-                axis.Separator = new LiveCharts.Wpf.Separator() { Step = 1 };
 
-                vm.RowSubLineAxis.Add(rowAxis);
                 }
-                */
-
-
-
             };
         }
     }
