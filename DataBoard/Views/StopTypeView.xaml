@@ -17,10 +17,16 @@
         </Grid.RowDefinitions>
         <DataGrid
             Grid.Row="0"
+            HorizontalAlignment="Center"
             AutoGenerateColumns="False"
             Background="Transparent"
+            BorderBrush="#282828"
             CanUserAddRows="False"
-            ItemsSource="{Binding StopTypes}">
+            CellStyle="{StaticResource ModernDataGridCellStyle}"
+            ColumnHeaderStyle="{StaticResource ModernDataGridColumnHeaderStyle}"
+            ItemsSource="{Binding StopTypes}"
+            RowStyle="{StaticResource ModernDataGridRowStyle}"
+            Style="{StaticResource ModernDataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Binding="{Binding Id}"
@@ -48,7 +54,7 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock
                                     Margin="5"
-                                    Style="{StaticResource DataGrid_TextBlock}"
+                                    Style="{StaticResource DataGridActionTextBlock}"
                                     Tag="{Binding}"
                                     Text="修改">
                                     <i:Interaction.Triggers>
@@ -62,7 +68,7 @@
                                 <TextBlock
                                     Grid.Column="1"
                                     Margin="5"
-                                    Style="{StaticResource DataGrid_TextBlock}"
+                                    Style="{StaticResource DataGridDeleteTextBlock}"
                                     Tag="{Binding}"
                                     Text="删除">
                                     <i:Interaction.Triggers>

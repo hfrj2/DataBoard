@@ -17,11 +17,16 @@
         </Grid.RowDefinitions>
         <DataGrid
             Grid.Row="0"
+            HorizontalAlignment="Center"
             AutoGenerateColumns="False"
             Background="Transparent"
-            BorderBrush="White"
+            BorderBrush="#282828"
             CanUserAddRows="False"
-            ItemsSource="{Binding Historys}">
+            CellStyle="{StaticResource ModernDataGridCellStyle}"
+            ColumnHeaderStyle="{StaticResource ModernDataGridColumnHeaderStyle}"
+            ItemsSource="{Binding Historys}"
+            RowStyle="{StaticResource ModernDataGridRowStyle}"
+            Style="{StaticResource ModernDataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Binding="{Binding Id}"
@@ -79,9 +84,10 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock
                                     Margin="5"
-                                    Style="{StaticResource DataGrid_TextBlock}"
+                                    
                                     Tag="{Binding}"
-                                    Text="修改">
+                                    Text="修改"
+                                    Style="{StaticResource DataGridActionTextBlock}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseUp">
                                             <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:HistoryView}, Path=DataContext.OpenEditHistoryWindowCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TextBlock}, Path=Tag}" />
@@ -93,7 +99,7 @@
                                 <TextBlock
                                     Grid.Column="1"
                                     Margin="5"
-                                    Style="{StaticResource DataGrid_TextBlock}"
+                                    Style="{StaticResource DataGridDeleteTextBlock}"
                                     Tag="{Binding}"
                                     Text="删除">
                                     <i:Interaction.Triggers>
